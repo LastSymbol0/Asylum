@@ -1,0 +1,131 @@
+{
+  "version": "0.0.0",
+  "name": "asylum",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "playerAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        },
+        {
+          "name": "nickname",
+          "type": "string"
+        },
+        {
+          "name": "avatar",
+          "type": "publicKey"
+        }
+      ]
+    },
+    {
+      "name": "updateNickname",
+      "accounts": [
+        {
+          "name": "playerAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "nickname",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "updateAvatar",
+      "accounts": [
+        {
+          "name": "playerAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "avatar",
+          "type": "publicKey"
+        }
+      ]
+    },
+    {
+      "name": "addGame",
+      "accounts": [
+        {
+          "name": "playerAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "game",
+          "type": "publicKey"
+        }
+      ]
+    },
+    {
+      "name": "removeGame",
+      "accounts": [
+        {
+          "name": "playerAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "game",
+          "type": "publicKey"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "PlayerAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "nickname",
+            "type": "string"
+          },
+          {
+            "name": "avatar",
+            "type": "publicKey"
+          },
+          {
+            "name": "games",
+            "type": {
+              "vec": "publicKey"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+     "address":"Ec5HRTfsozgfQerig5DTsKqGL3MkZ3jcdohb3qYXwzMN"
+  }
+}
