@@ -1,29 +1,23 @@
 import React from "react"
 import Tabs from '@mui/material/Tabs';
-import LinkTab from '@mui/material/Tab';
+import Tab from '@mui/material/Tab';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 import { Route } from "../../routes";
 
 const NavigationPanel = ({ pages }: { pages: Route[] }) => {
-    const [value, setValue] = React.useState(0)
-
-    const handleChange = (_: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    }
+    const routeMatch = useRouteMatch(pages.map(x => x.path));
+    const currentTab = routeMatch?.path;
 
     return <Tabs orientation="vertical"
         variant='fullWidth'
-        value={value}
-        onChange={handleChange}
-        // sx={{ borderRight: 1, borderColor: 'divider' }}
+        value={currentTab}
     >
         {pages.map(((x, i) =>
             <div style={{marginTop: '20px'}}>
-                <LinkTab label={x.component.name} href={x.path} id={`vertical-tab-${i}`} />
+                <Tab label={x.name} value={x.path} to={x.path} component={Link} />
             </div>))}
     </Tabs>
 }
-
-
 
 export { NavigationPanel }
