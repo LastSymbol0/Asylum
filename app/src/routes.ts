@@ -14,6 +14,12 @@ export type Route = {
 }
 
 export const routes: Route[] = [
+    // Tmp
+    {
+        path: "/",
+        name: "Home",
+        component: GamesStorePage
+    },
     {
         path: "/account",
         name: "Account",
@@ -41,7 +47,7 @@ export const routes: Route[] = [
     },
     {
         path: "/demo1",
-        name: "Demo 1 (Players)",
+        name: "[DEV] Demo 1 (Players)",
         component: PlayersDemo
     }
 ]
