@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/asylum/static/css/main.106baaae.chunk.css",
+    "main.js": "/asylum/static/js/main.bfbfdb95.chunk.js",
+    "main.js.map": "/asylum/static/js/main.bfbfdb95.chunk.js.map",
+    "runtime-main.js": "/asylum/static/js/runtime-main.156f2110.js",
+    "runtime-main.js.map": "/asylum/static/js/runtime-main.156f2110.js.map",
+    "static/css/2.0acf608e.chunk.css": "/asylum/static/css/2.0acf608e.chunk.css",
+    "static/js/2.0c2776e7.chunk.js": "/asylum/static/js/2.0c2776e7.chunk.js",
+    "static/js/2.0c2776e7.chunk.js.map": "/asylum/static/js/2.0c2776e7.chunk.js.map",
+    "index.html": "/asylum/index.html",
+    "static/css/2.0acf608e.chunk.css.map": "/asylum/static/css/2.0acf608e.chunk.css.map",
+    "static/css/main.106baaae.chunk.css.map": "/asylum/static/css/main.106baaae.chunk.css.map",
+    "static/js/2.0c2776e7.chunk.js.LICENSE.txt": "/asylum/static/js/2.0c2776e7.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.156f2110.js",
+    "static/css/2.0acf608e.chunk.css",
+    "static/js/2.0c2776e7.chunk.js",
+    "static/css/main.106baaae.chunk.css",
+    "static/js/main.bfbfdb95.chunk.js"
+  ]
+}
