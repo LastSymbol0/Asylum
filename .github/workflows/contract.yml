@@ -1,0 +1,45 @@
+name: contract
+
+on:
+  push:
+    paths:
+      - 'programs/asylum/src/**'
+      - 'programs/asylum/Cargo.toml'
+      - 'programs/asylum/Xargo.toml'
+      - 'tests/**'
+      - '.github/workflows/contract.yml'
+    branches:
+      - main
+  pull_request:
+    paths:
+      - 'programs/asylum/src/**'
+      - 'programs/asylum/Cargo.toml'
+      - 'programs/asylum/Xargo.toml'
+      - 'tests/**'
+      - '.github/workflows/contract.yml'
+    branches:
+      - main
+
+jobs:
+
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      - uses: actions-rs/toolchain@v1
+        with:
+          target: wasm32-unknown-unknown
+          toolchain: stable
+          components: rustfmt, clippy
+          profile: minimal
+          override: true
+      - run: cargo fmt #TODO: add tests
