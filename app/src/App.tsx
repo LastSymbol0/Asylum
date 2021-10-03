@@ -2,7 +2,7 @@ import './App.css';
 import { getPhantomWallet } from '@solana/wallet-adapter-wallets';
 import { WalletProvider, ConnectionProvider } from '@solana/wallet-adapter-react';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, HashRouter } from "react-router-dom";
 import { Grid } from '@mui/material'
 import { NavigationPanel } from './components/NavigationPanel';
 import { Route as PageRoute, routes } from './routes'
@@ -10,6 +10,7 @@ import { Route as PageRoute, routes } from './routes'
 const wallets = [getPhantomWallet()]
 
 const Pages = ({ pages }: { pages: PageRoute[] }) => {
+  
   return (
     <Switch>
       {pages.map((x => <Route path={x.path} key={x.path} exact component={x.component} />))}
@@ -19,7 +20,7 @@ const Pages = ({ pages }: { pages: PageRoute[] }) => {
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <HashRouter basename={`/${process.env.PUBLIC_URL}`}>
 
         <Grid container spacing={2} columns={5}>
           <Grid item xs={1}>
@@ -30,7 +31,7 @@ function App() {
           </Grid>
         </Grid>
 
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }

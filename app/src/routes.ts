@@ -46,3 +46,4 @@ export const routes: Route[] = [
     component: PlayersDemo,
   },
 ];
+
