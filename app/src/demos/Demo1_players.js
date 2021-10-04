@@ -4,13 +4,21 @@ import { players } from '../lib'
 import { useWallet } from '@solana/wallet-adapter-react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import { useEffect, useState } from 'react'
-import { Connection, PublicKey } from '@solana/web3.js'
-import { Program, Provider } from '@project-serum/anchor'
+import { Connection, PublicKey, clusterApiUrl } from '@solana/web3.js'
+import { Program, Provider } from '@project-serum/anchor';
+
+//TODO: remove
+import '@solana/spl-token';
+
+import axios from 'axios';
+
+import { getEditionMarkPda, getMasterEdition, getMetadata } from '../lib/metadata';
+
 
 const programID = new PublicKey(idl.metadata.address)
 
 function PlayersDemo() {
-  const [isInitialized, setIsInitialized] = useState(false)
+  const [isInitialized, setIsInitialized] = useState(true)
 
   const [nickname, setNickname] = useState('')
   const [avatar, setAvatar] = useState(PublicKey.default)
@@ -19,7 +27,9 @@ function PlayersDemo() {
   const [inputNickname, setInputNickname] = useState('')
   const [inputAvatar, setInputAvatar] = useState('')
   const [inputGame, setInputGame] = useState('')
-  const wallet = useWallet()
+  const wallet = useWallet();
+
+
 
   async function getProvider() {
     /* create the provider and return it to the caller */
@@ -32,6 +42,59 @@ function PlayersDemo() {
       connection, wallet, opts.preflightCommitment,
     )
     return provider;
+  }
+
+  function getTokenAccountsByOwner(owner) {
+    axios.post('http://api.mainnet-beta.solana.com', {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "getProgramAccounts",
+      "params": [
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        {
+          "encoding": "jsonParsed",
+          "filters": [
+            {
+              "dataSize": 165
+            },
+            {
+              "memcmp": {
+                "offset": 32,
+                "bytes": owner
+              }
+            }
+          ]
+        }
+      ]
+    }).then(response =>{
+      console.log("WTFFFF", response)
+
+      const results = response.data.result;
+
+      const programId= new PublicKey("metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s");
+      const mint_key= new PublicKey("Brznjf93yY6gfVrvB2UeXJKA2Amu417Mxzx6jbrtFvvu");
+      // const mint_key= new PublicKey(results[0].account.data.parsed.info.mint);
+      console.log('hey,')
+      console.log(mint_key.toString())
+
+      getEditionMarkPda(mint_key, 1).then(r => console.log('1, ', r.toString()));
+      getMasterEdition(mint_key).then(r => console.log('2, ', r.toString()));
+      getMetadata(mint_key).then(r => console.log('3', r.toString()))
+
+      // PublicKey.findProgramAddress(['metadata', mint_key.toBuffer(), programId.toBuffer(),
+      // Buffer.from('edition')], programId).then(
+      //   result =>{
+      //     const tokenMetadataAccAddr = result[0];
+
+      //     console.log('hey, you`re lokking nice')
+      //     console.log(tokenMetadataAccAddr.toString())
+      //   }
+      // )
+
+    });
+
+
+
   }
 
   async function fetchPlayerData() {
@@ -125,7 +188,8 @@ function PlayersDemo() {
   useEffect(() => {
     if (wallet.connected) {
       try {
-        fetchPlayerData()
+        fetchPlayerData();
+        getTokenAccountsByOwner("Pigv3gFWLWJL8QwrFBkdZLe1RYzNJTSJPGEUNVimJjh")
       } catch (e) {
         if (isInitialized) {
           console.error(e)
@@ -135,12 +199,12 @@ function PlayersDemo() {
   }, [wallet.connected])
 
   return (
-    !wallet.connected
-      ?
-      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '100px' }}>
-        <WalletMultiButton />
-      </div>
-      :
+    // !wallet.connected
+    //   ?
+    //   <div style={{ display: 'flex', justifyContent: 'center', marginTop: '100px' }}>
+    //     <WalletMultiButton />
+    //   </div>
+    //   :
       <div className="App">
         <div>
           {
