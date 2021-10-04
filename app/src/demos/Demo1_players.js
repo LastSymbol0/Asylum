@@ -1,4 +1,4 @@
-import idl from '../idl.json'
+import idl from '../idl/players.json'
 import { players } from '../lib'
 
 import { useWallet } from '@solana/wallet-adapter-react'
@@ -15,10 +15,16 @@ function PlayersDemo() {
   const [nickname, setNickname] = useState('')
   const [avatar, setAvatar] = useState(PublicKey.default)
   const [games, setGames] = useState([])
+  const [achievements, setAchievements] = useState([])
+  const [exp, setExp] = useState(0)
+  const [level, setLevel] = useState(0)
 
   const [inputNickname, setInputNickname] = useState('')
   const [inputAvatar, setInputAvatar] = useState('')
   const [inputGame, setInputGame] = useState('')
+  const [inputAchievements, setInputAchievements] = useState('')
+  const [inputAchievementsExp, setInputAchievementsExp] = useState(0)
+  const [inputExp, setInputExp] = useState(0)
   const wallet = useWallet()
 
   async function getProvider() {
@@ -47,6 +53,9 @@ function PlayersDemo() {
       setNickname(account.nickname.toString())
       setAvatar(account.avatar.toString())
       setGames(account.games)
+      setAchievements(account.achievements)
+      setExp(account.exp)
+      setLevel(account.level)
     } catch (err) {
       console.log("Player data fetching error: ", err)
     }
@@ -57,6 +66,7 @@ function PlayersDemo() {
     const program = new Program(idl, programID, provider)
 
     try {
+      console.log(program)
       await players.initPlayer(program)
       setIsInitialized(true)
     } catch (err) {
@@ -122,6 +132,35 @@ function PlayersDemo() {
     fetchPlayerData()
   }
 
+  async function addAchievement() {
+    const provider = await getProvider()
+    const program = new Program(idl, programID, provider)
+
+    try {
+      await players.addAchievement(program, inputAchievements, inputAchievementsExp)
+      setInputAchievements('')
+      setInputAchievementsExp('')
+    } catch (err) {
+      console.log("Transaction error: ", err)
+    }
+
+    fetchPlayerData()
+  }
+
+  async function addExp() {
+    const provider = await getProvider()
+    const program = new Program(idl, programID, provider)
+
+    try {
+      await players.addExp(program, inputExp)
+      setInputExp('')
+    } catch (err) {
+      console.log("Transaction error: ", err)
+    }
+
+    fetchPlayerData()
+  }
+
   useEffect(() => {
     if (wallet.connected) {
       try {
@@ -155,6 +194,10 @@ function PlayersDemo() {
                 <h3>Current avatar: </h3>{avatar.toString()}
                 <h3>Current games: </h3>
                 {games && games.length !== 0 ? <ul>{games.map((x, i) => <li key={i}>{x.toString()}</li>)}</ul> : "No games so far"}
+                <h3>Achievements: </h3>
+                {achievements && achievements.length !== 0 ? <ul>{achievements.map((x, i) => <li key={i}>{x.toString()}</li>)}</ul> : "No achievements so far"}
+                <h3>Current level: </h3>{level}
+                <h3>Current exp: </h3>{exp}
 
                 <h1 style={{ marginTop: 60 }}>Edit</h1>
 
@@ -187,6 +230,32 @@ function PlayersDemo() {
                   />
                   <button onClick={addGame}>Add game</button>
                   <button onClick={removeGame}>Remove game</button>
+                </div>
+
+                <div>
+                  <input
+                    style={{ width: 200 }}
+                    placeholder="Achievement id (u16)"
+                    onChange={e => setInputAchievements(e.target.value)}
+                    value={inputAchievements}
+                  />
+                  <input
+                    style={{ width: 200 }}
+                    placeholder="Exp to add (optional) (u32)"
+                    onChange={e => setInputAchievementsExp(e.target.value)}
+                    value={inputAchievementsExp}
+                  />
+                  <button onClick={addAchievement}>Add achievement</button>
+                </div>
+                
+                <div>
+                  <input
+                    style={{ width: 200 }}
+                    placeholder="Exp to add (u32)"
+                    onChange={e => setInputExp(e.target.value)}
+                    value={inputExp}
+                  />
+                  <button onClick={addExp}>Add exp</button>
                 </div>
 
               </div>
