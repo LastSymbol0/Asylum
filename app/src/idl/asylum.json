@@ -1,0 +1,39 @@
+{
+  "version": "0.0.0",
+  "name": "asylum",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "mainAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "AsylumMainAccount",
+      "type": {
+        "kind": "struct",
+        "fields": []
+      }
+    }
+  ],
+  "metadata": {
+     "address":"Ec5HRTfsozgfQerig5DTsKqGL3MkZ3jcdohb3qYXwzMN"
+  }
+}

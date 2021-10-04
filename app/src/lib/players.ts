@@ -71,3 +71,27 @@ export const removeGameFromLibrary = async (program: Program, gameAddress: Publi
       }
     });
 }
+
+export const addAchievement = async (program: Program, achievementId: number, expToAdd: number = 0): Promise<void> => {
+  const userPublicKey = program.provider.wallet.publicKey;
+  const programId = program.programId;
+  const [playerAccount, _] = await findPlayerGlobalAccountAddress(userPublicKey, programId);
+
+  await program.rpc.addAchievement(achievementId, expToAdd, {
+    accounts: {
+      playerAccount: playerAccount,
+    }
+  });
+}
+
+export const addExp = async (program: Program, exp: number): Promise<void> => {
+  const userPublicKey = program.provider.wallet.publicKey;
+  const programId = program.programId;
+  const [playerAccount, _] = await findPlayerGlobalAccountAddress(userPublicKey, programId);
+
+  await program.rpc.addExp(exp, {
+    accounts: {
+      playerAccount: playerAccount,
+    }
+  });
+}
