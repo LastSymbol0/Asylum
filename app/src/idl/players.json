@@ -1,6 +1,6 @@
 {
   "version": "0.0.0",
-  "name": "asylum",
+  "name": "players",
   "instructions": [
     {
       "name": "initialize",
@@ -99,6 +99,42 @@
           "type": "publicKey"
         }
       ]
+    },
+    {
+      "name": "addAchievement",
+      "accounts": [
+        {
+          "name": "playerAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "achievementId",
+          "type": "u16"
+        },
+        {
+          "name": "expToAdd",
+          "type": "u32"
+        }
+      ]
+    },
+    {
+      "name": "addExp",
+      "accounts": [
+        {
+          "name": "playerAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "exp",
+          "type": "u32"
+        }
+      ]
     }
   ],
   "accounts": [
@@ -120,12 +156,26 @@
             "type": {
               "vec": "publicKey"
             }
+          },
+          {
+            "name": "level",
+            "type": "u8"
+          },
+          {
+            "name": "exp",
+            "type": "u32"
+          },
+          {
+            "name": "achievements",
+            "type": {
+              "vec": "u16"
+            }
           }
         ]
       }
     }
   ],
   "metadata": {
-     "address":"Ec5HRTfsozgfQerig5DTsKqGL3MkZ3jcdohb3qYXwzMN"
+     "address":"9acXdXcHNvgNiy5J62B5mt2gyZuMQ1fBYaqtdnHcjGkj"
   }
 }
