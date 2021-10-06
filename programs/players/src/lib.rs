@@ -112,7 +112,7 @@ pub struct Initialize<'info> {
         seeds = [user.key.as_ref()],
         bump = bump,
         payer = user,
-        space = /* nickname */ 32 
+        space = /* nickname */ 32
             + /* avatar */ size_of::<Pubkey>()
             + /* games */ (size_of::<Pubkey>() * 100)
             + /* level */ size_of::<u8>()
