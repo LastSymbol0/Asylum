@@ -1,3 +1,4 @@
 import * as players from './players'
+import * as asylum from './asylum'
 
-export { players };
+export { players, asylum };
