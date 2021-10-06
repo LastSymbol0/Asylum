@@ -6,6 +6,7 @@ import { LibraryPage } from './pages/Library';
 import { MarketplacePage } from './pages/Marketplace';
 
 import PlayersDemo from './demos/Demo1_players'
+import AchievementsDemo from './demos/Demo2_achievements'
 
 export type Route = {
     path: string;
@@ -49,5 +50,10 @@ export const routes: Route[] = [
         path: "/demo1",
         name: "[DEV] Demo 1 (Players)",
         component: PlayersDemo
+    },
+    {
+        path: "/demo2",
+        name: "[DEV] Demo 2 (Achievements; admin)",
+        component: AchievementsDemo
     }
 ]

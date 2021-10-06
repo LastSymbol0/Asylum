@@ -22,6 +22,98 @@
         }
       ],
       "args": []
+    },
+    {
+      "name": "initializeAchievements",
+      "accounts": [
+        {
+          "name": "achievementsAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "addAchievement",
+      "accounts": [
+        {
+          "name": "achievementsAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "game",
+          "type": "publicKey"
+        }
+      ]
+    },
+    {
+      "name": "initializeGamesCatalog",
+      "accounts": [
+        {
+          "name": "gamesCatalogAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "bump",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "addGameToCatalog",
+      "accounts": [
+        {
+          "name": "gamesCatalogAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "game",
+          "type": "publicKey"
+        }
+      ]
     }
   ],
   "accounts": [
@@ -30,6 +122,62 @@
       "type": {
         "kind": "struct",
         "fields": []
+      }
+    },
+    {
+      "name": "GamesCatalogAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "games",
+            "type": {
+              "vec": "publicKey"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "AchievementsAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "achievements",
+            "type": {
+              "vec": {
+                "defined": "Achievement"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "Achievement",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u16"
+          },
+          {
+            "name": "label",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "game",
+            "type": "publicKey"
+          }
+        ]
       }
     }
   ],

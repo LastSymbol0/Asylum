@@ -1,5 +1,6 @@
-import idl from '../idl/players.json'
-import { players } from '../lib'
+import playersIdl from '../idl/players.json'
+import asylumIdl from '../idl/asylum.json'
+import { players, asylum } from '../lib'
 
 import { useWallet } from '@solana/wallet-adapter-react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
@@ -7,17 +8,21 @@ import { useEffect, useState } from 'react'
 import { Connection, PublicKey } from '@solana/web3.js'
 import { Program, Provider } from '@project-serum/anchor'
 
-const programID = new PublicKey(idl.metadata.address)
+const playersProgramID = new PublicKey(playersIdl.metadata.address)
+const asylumProgramID = new PublicKey(asylumIdl.metadata.address)
 
 function PlayersDemo() {
   const [isInitialized, setIsInitialized] = useState(false)
+  const [isInitializedGlobal, setIsInitializedGlobal] = useState(false)
 
   const [nickname, setNickname] = useState('')
   const [avatar, setAvatar] = useState(PublicKey.default)
   const [games, setGames] = useState([])
-  const [achievements, setAchievements] = useState([])
+  const [playerAchievements, setPlayerAchievements] = useState([])
   const [exp, setExp] = useState(0)
   const [level, setLevel] = useState(0)
+
+  const [achievements, setAchievements] = useState([])
 
   const [inputNickname, setInputNickname] = useState('')
   const [inputAvatar, setInputAvatar] = useState('')
@@ -40,12 +45,29 @@ function PlayersDemo() {
     return provider;
   }
 
-  async function fetchPlayerData() {
+  async function fetchGlobalData() {
     const provider = await getProvider()
-    const program = new Program(idl, programID, provider)
+    const program = new Program(asylumIdl, asylumProgramID, provider)
 
     try {
-      const [playerAccountAddress, _] = await players.findPlayerGlobalAccountAddress(wallet.publicKey, programID)
+      const [achievementsAccountAddress, _] = await asylum.findAchievementsAccountAddress(asylumProgramID)
+      const account = await program.account.achievementsAccount.fetch(achievementsAccountAddress)
+
+      console.log(account)
+      setIsInitializedGlobal(true)
+      setAchievements(account.achievements)
+    } catch (err) {
+      console.log("Achievements data fetching error: ", err)
+    }
+  }
+
+
+  async function fetchPlayerData() {
+    const provider = await getProvider()
+    const program = new Program(playersIdl, playersProgramID, provider)
+
+    try {
+      const [playerAccountAddress, _] = await players.findPlayerGlobalAccountAddress(wallet.publicKey, playersProgramID)
       const account = await program.account.playerAccount.fetch(playerAccountAddress)
 
       console.log(account)
@@ -53,7 +75,7 @@ function PlayersDemo() {
       setNickname(account.nickname.toString())
       setAvatar(account.avatar.toString())
       setGames(account.games)
-      setAchievements(account.achievements)
+      setPlayerAchievements(account.achievements)
       setExp(account.exp)
       setLevel(account.level)
     } catch (err) {
@@ -61,9 +83,9 @@ function PlayersDemo() {
     }
   }
 
-  async function initialize() {
+  async function initializePlayer() {
     const provider = await getProvider()
-    const program = new Program(idl, programID, provider)
+    const program = new Program(playersIdl, playersProgramID, provider)
 
     try {
       console.log(program)
@@ -76,9 +98,25 @@ function PlayersDemo() {
     fetchPlayerData()
   }
 
+
+  async function initializeGlobal() {
+    const provider = await getProvider()
+    const program = new Program(playersIdl, playersProgramID, provider)
+
+    try {
+      console.log(program)
+      await asylum.initAsylumAccounts(program)
+      setIsInitializedGlobal(true)
+    } catch (err) {
+      console.log("Transaction error: ", err)
+    }
+
+    fetchGlobalData()
+  }
+
   async function updateNickname() {
     const provider = await getProvider()
-    const program = new Program(idl, programID, provider)
+    const program = new Program(playersIdl, playersProgramID, provider)
 
     try {
       await players.updatePlayerNickname(program, inputNickname)
@@ -92,7 +130,7 @@ function PlayersDemo() {
 
   async function updateAvatar() {
     const provider = await getProvider()
-    const program = new Program(idl, programID, provider)
+    const program = new Program(playersIdl, playersProgramID, provider)
 
     try {
       await players.updatePlayerAvatar(program, new PublicKey(inputAvatar))
@@ -106,7 +144,7 @@ function PlayersDemo() {
 
   async function addGame() {
     const provider = await getProvider()
-    const program = new Program(idl, programID, provider)
+    const program = new Program(playersIdl, playersProgramID, provider)
 
     try {
       await players.addGameToLibrary(program, new PublicKey(inputGame))
@@ -120,7 +158,7 @@ function PlayersDemo() {
 
   async function removeGame() {
     const provider = await getProvider()
-    const program = new Program(idl, programID, provider)
+    const program = new Program(playersIdl, playersProgramID, provider)
 
     try {
       await players.removeGameFromLibrary(program, new PublicKey(inputGame))
@@ -134,7 +172,7 @@ function PlayersDemo() {
 
   async function addAchievement() {
     const provider = await getProvider()
-    const program = new Program(idl, programID, provider)
+    const program = new Program(playersIdl, playersProgramID, provider)
 
     try {
       await players.addAchievement(program, inputAchievements, inputAchievementsExp)
@@ -149,7 +187,7 @@ function PlayersDemo() {
 
   async function addExp() {
     const provider = await getProvider()
-    const program = new Program(idl, programID, provider)
+    const program = new Program(playersIdl, playersProgramID, provider)
 
     try {
       await players.addExp(program, inputExp)
@@ -163,6 +201,14 @@ function PlayersDemo() {
 
   useEffect(() => {
     if (wallet.connected) {
+      try {
+        fetchGlobalData()
+      } catch (e) {
+        if (isInitializedGlobal) {
+          console.error(e)
+        }
+      }
+
       try {
         fetchPlayerData()
       } catch (e) {
@@ -183,11 +229,15 @@ function PlayersDemo() {
       <div className="App">
         <div>
           {
-            !isInitialized && (<button onClick={initialize}>Initialize</button>)
+            !isInitializedGlobal && (<button onClick={initializeGlobal}>Initialize global</button>)
           }
 
           {
-            isInitialized ? (
+            isInitializedGlobal && !isInitialized && (<button onClick={initializePlayer}>Initialize</button>)
+          }
+
+          {
+            isInitializedGlobal && isInitialized ? (
               <div style={{ width: "fit-content", margin: "0 auto", textAlign: "left" }}>
                 <h1>Current player account state</h1>
                 <h3>Current nickname: </h3>{nickname}
@@ -195,7 +245,17 @@ function PlayersDemo() {
                 <h3>Current games: </h3>
                 {games && games.length !== 0 ? <ul>{games.map((x, i) => <li key={i}>{x.toString()}</li>)}</ul> : "No games so far"}
                 <h3>Achievements: </h3>
-                {achievements && achievements.length !== 0 ? <ul>{achievements.map((x, i) => <li key={i}>{x.toString()}</li>)}</ul> : "No achievements so far"}
+                {playerAchievements && playerAchievements.length !== 0 ?
+                  <ul>{playerAchievements.map((x, i) =>
+                  {
+                    const achievement = achievements.find(item => item.id === i);
+                    const display = achievement
+                      ? `${achievement.label} - ${achievement.description} | Game: ${achievement.game.toString()}`
+                      : `id: ${x}`
+                    return <li key={i}>{display}</li>
+                  })}
+                  </ul>
+                  : "No achievements so far"}
                 <h3>Current level: </h3>{level}
                 <h3>Current exp: </h3>{exp}
 
