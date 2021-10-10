@@ -21,6 +21,8 @@
     "@types/react": "^16.14.15",
     "@types/react-dom": "^16.9.14",
     "@types/react-redux": "^7.1.18",
+    "material-ui-search-bar": "^1.0.0",
+    "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.5",
@@ -53,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@material-ui/core": "^4.12.3",
     "@types/react-router-dom": "^5.3.0",
     "gh-pages": "^3.2.3"
   }

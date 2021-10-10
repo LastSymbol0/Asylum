@@ -1,0 +1,85 @@
+.NavigationPanelWrapper{
+    min-width: 245px;
+    box-sizing: border-box;
+    position: fixed;
+    top: 90px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: calc(100vh - 90px);
+    background: #161616;
+
+    .MuiButtonBase-root{
+        padding: 35px 30px 35px 35px;
+        height: auto;
+        .MuiTab-wrapper{
+            text-align: left;
+            text-transform: capitalize;
+            align-items: flex-start;
+            p {
+                letter-spacing: 0.06em;
+            }
+        }
+    }
+
+
+    .bottomContainer{
+        padding: 35px 30px 35px 35px;
+        width: 100%;
+
+        .profileContainer{
+            .accountInfo{
+                display: flex;
+                .profileIcon{
+                    width: 50px;
+                    border-radius: 50%;
+                    margin-right: 16px;
+                }
+                .userName{
+                    position: relative;
+                    .editIcon{
+                        position: absolute;
+                        padding: 5px;
+                        right: -25px;
+                        top: -3px;
+                        cursor: pointer;
+                        opacity: 0.7;
+                        transition: all .3s ease;
+                        &:hover{
+                            opacity: 1;
+                        }
+                    }
+                }
+                
+            }
+            .achievmentsContainer{
+                ul{
+                    padding: 0;
+                    margin: 0;
+                    text-align: left;
+                    margin-top: 20px;
+                    li{
+                        list-style: none;
+                        margin-top: 7px;
+                    }
+                }
+            }
+        }
+
+        .contactUsContainer{
+            display: flex;
+            align-items: center;
+            padding-top: 50px;
+            .icon{
+                width: 30px;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .myIndicator{
+        // display: none;
+    }
+}
