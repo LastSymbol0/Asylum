@@ -43,6 +43,10 @@ const theme = createTheme({
     body1: {
       fontSize : 16,
     },
+    caption: {
+        color: '#000000',
+        fontSize : 16,
+    },
   }
 });
 
@@ -56,14 +60,19 @@ function App() {
         <div className="App">
 
           <HashRouter basename={`/${process.env.PUBLIC_URL}`}>
+                
 
+            <Grid container  columns={1}>
+              <Grid item xs={1}><Header /></Grid>
+            </Grid>
             <Grid container spacing={2} columns={5}>
               <Grid item xs={1}>
-                <Header />
                 <NavigationPanel pages={routes} />
               </Grid>
-              <Grid style={{paddingTop: '110px'}} item xs={4}>
-                <Pages pages={routes} />
+              <Grid item xs={4}>
+                <div className="contentWrapper">
+                  <Pages pages={routes} />
+                </div>
               </Grid>
             </Grid>
 

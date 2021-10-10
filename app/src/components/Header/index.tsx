@@ -1,4 +1,3 @@
-import Autocomplete from "@mui/material/Autocomplete";
 import React from "react"
 import logo from './../../assets/logo.svg';
 import settingsIcon from './../../assets/settingsIcon.svg'
