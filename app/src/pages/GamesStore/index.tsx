@@ -1,5 +1,11 @@
+import './style.scss'
+
 const GamesStorePage = () => {
-    return <div>GamesStore page placeholder</div>
+    return <>
+        <div>
+            
+        </div>
+    </>
 }
 
 export { GamesStorePage }

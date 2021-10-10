@@ -1,0 +1,74 @@
+.HeaderWrapper{
+    width: 100%;
+    padding: 24px 30px;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 90px;
+    max-height: 90px;
+    background: #161616;
+
+    .HeaderRight{
+        display: flex;
+        align-items: center;
+        .MuiFormControl-root{
+            margin-right: 15px;
+            .MuiInput-root{
+                &::before, &::after{
+                    display: none;
+                }
+                .MuiSelect-standard{
+                    padding-right: 5px;
+                    color: #ffffff;
+                    // .MuiSvgIcon-root, .MuiSvgIcon-root.MuiSelect-iconOpen{
+                    //     color: rgba($color: #ffffff, $alpha: 1);
+                    // }
+                }
+            }
+            
+        }
+        .settingButtons{
+            padding: 5px 20px 5px 20px;
+            margin-right: 10px;
+            height: 30px;
+            cursor: pointer;
+            transition: all .3s ease;
+            &:hover{
+                transform: rotate(90deg);
+            }
+        }
+        .connectWallerButton{
+            padding: 10px 5px 10px 25px;
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            background: transparent;
+            cursor: pointer;
+            letter-spacing: 0.06em;
+            font-size: 16px;
+            white-space: nowrap;
+        }
+    }
+}
+
+.MuiPaper-root.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper{
+    background: transparent;
+    box-shadow: none;
+    color: #ffffff;
+    
+    .MuiList-root{
+        margin: 0;
+        padding: 0;
+
+        .MuiMenuItem-root{
+            padding-bottom: 6px;
+            padding-left: 13px;
+        }
+        
+        .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected{
+            background: transparent;
+        }
+    }
+}
