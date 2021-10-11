@@ -42,11 +42,12 @@ const NavigationPanel = ({ pages }: { pages: Route[] }) => {
               }}
         >
             {pages.map(((x, i) =>
-                <Tab key={i} label={<Typography variant="body1">{x.name }</Typography>} value={x.path} to={x.path} component={Link} />
+                <Tab disableRipple key={i} label={<Typography variant="body1">{x.name }</Typography>} value={x.path} to={x.path} component={Link} />
             ))}
         </Tabs>
 
         <div className="bottomContainer">
+            <div className="decor-1"> </div>
             <div className="profileContainer">
                 <div className="accountInfo">
                     <img className="profileIcon" src={placeholder} alt="profile icon"/>

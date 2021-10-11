@@ -3,654 +3,625 @@ import gameExample from "./../../assets/gameExample.png";
 import { Typography } from '@mui/material';
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import SearchBar from '../../components/SearchBar';
+
+import gamePlaceholder1 from './../../assets/gamePlaceholder1.png';
+import gamePlaceholder2 from './../../assets/gamePlaceholder2.png';
+import gamePlaceholder3 from './../../assets/sliderPlaceholder.png';
+
 
 
 const GamesStorePage = () => {
-    
 
-    return <>   
-        <div className="GamesStoreWrapper">
-            <div className="bannerWrapper">
-                <div>
+    return <>
+        
+            <div className="GamesStoreWrapper">
+            <div className="decor-1"></div>
+            <div className="decor-2"></div>  
+                <div className="bannerWrapper">
+                    <div className="bannerLeftSideWrapper">
 
+                    <Carousel className="Carousel" showStatus={false} showIndicators={false} showThumbs={false} autoPlay>
+                        <div className="slide" style={{background: `url(${gamePlaceholder3})`}}></div>
+                        <div className="slide" style={{background: `url(${gamePlaceholder3})`}}></div>
+                        <div className="slide" style={{background: `url(${gamePlaceholder3})`}}></div>
+                    </Carousel>
 
-                <Carousel autoPlay>
-    <div>
-      <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-1.jpg" />
-      <p className="legend">Legend 1</p>
-    </div>
-    <div>
-      <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-2.jpg" />
-      <p className="legend">Legend 2</p>
-    </div>
-    <div>
-      <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-3.jpg" />
-      <p className="legend">Legend 3</p>
-    </div>
-    <div>
-      <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-4.jpg" />
-      <p className="legend">Legend 4</p>
-    </div>
-    <div>
-      <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-5.jpg" />
-      <p className="legend">Legend 5</p>
-    </div>
-    <div>
-      <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-6.jpg" />
-      <p className="legend">Legend 6</p>
-    </div>
-    <div>
-      <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-7.jpg" />
-      <p className="legend">Legend 7</p>
-    </div>
-    <div>
-      <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-8.jpg" />
-      <p className="legend">Legend 8</p>
-    </div>
-    <div>
-      <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-9.jpg" />
-      <p className="legend">Legend 9</p>
-    </div>
-    <div>
-      <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-10.jpg" />
-      <p className="legend">Legend 10</p>
-    </div>
-    <div>
-      <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-11.jpg" />
-      <p className="legend">Legend 11</p>
-    </div>
-    <div>
-      <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-12.jpg" />
-      <p className="legend">Legend 12</p>
-    </div>
-    <div>
-      <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-13.jpg" />
-      <p className="legend">Legend 13</p>
-    </div>
-    <div>
-      <img alt="" src="http://lorempixel.com/output/cats-q-c-640-480-14.jpg" />
-      <p className="legend">Legend 14</p>
-    </div>
-  </Carousel>
+                    <SearchBar />
 
 
-                
+                    </div>
+                    <div className="suggestedContainer">
+                        <div className="suggested-firs--container">
+                            <div className="decor-bottom">
+                                <div className="suggested-first" style={{background: `url(${gamePlaceholder1})`}}>
+                                    <div className="label">Friends play</div>
+                                    <div className="price">15 €</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div className="suggested-second--container">
+                            <div className="suggested-second" style={{background: `url(${gamePlaceholder2})`}}>
+                                <div className="label">Suggest for you</div>
+                                <div className="price">10 €</div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <div>
+                <div className="gamesList">
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
+
+                    <div className="game" style={{background: `url(${gameExample})`}}>
+                        <div className="addButtton">
+                            <Typography variant="caption">Add</Typography>
+                        </div>
+                    </div>
 
                 </div>
             </div>
-            <div className="gamesList">
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-                <div className="game" style={{background: `url(${gameExample})`}}>
-                    <div className="addButtton">
-                        <Typography variant="caption">Add</Typography>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+         
     </>
 }
 
