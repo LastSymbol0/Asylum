@@ -1,0 +1,31 @@
+.MuiAutocomplete-root{
+        background: #ffffff;
+        border-radius: 80px;
+        height: 44px;
+        transition: all .2s ease;
+
+        &.Mui-focused{
+            background: linear-gradient(0deg, #3A7DAD -1.54%, #5ED55B 101.23%);
+            background: -webkit-linear-gradient(0deg, #3A7DAD -1.54%, #5ED55B 101.23%);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        
+    
+        .MuiAutocomplete-inputRoot{
+            //background: #ffffff;
+            border-radius: 80px;
+            height: 44px;
+            .MuiAutocomplete-input{
+                padding: 0px 10px !important;
+                border: none;
+                fieldset{
+                    border: none !important;
+                }
+            }
+        }	
+        
+    }
+

@@ -17,16 +17,6 @@ export type Route = {
 export const routes: Route[] = [
     // Tmp
     {
-        path: "/",
-        name: "Home",
-        component: GamesStorePage
-    },
-    {
-        path: "/account",
-        name: "Account",
-        component: AccountPage
-    },
-    {
         path: "/gamesStore",
         name: "Games Store",
         component: GamesStorePage
