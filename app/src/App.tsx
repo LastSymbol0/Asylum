@@ -9,11 +9,14 @@ import Header from './components/Header';
 import { Route as PageRoute, routes } from './routes';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { createTheme, ThemeProvider, useTheme } from '@material-ui/core';
+import { useEffect } from 'react';
 
 const wallets = [getPhantomWallet()]
 
 const Pages = ({ pages }: { pages: PageRoute[] }) => {
-  
+  useEffect(() => {
+    console.log(pages);
+  }, [ ])
   return (
     <Switch>
       {pages.map((x => <Route path={x.path} key={x.path} exact component={x.component} />))}
@@ -59,7 +62,7 @@ function App() {
         <CssBaseline />
         <div className="App">
 
-          <HashRouter basename={`/${process.env.PUBLIC_URL}`}>
+          <HashRouter basename={process.env.PUBLIC_URL ? `${process.env.PUBLIC_URL}` : undefined}>
                 
 
             <Grid container  columns={1}>
