@@ -27,6 +27,7 @@
       <sourceFolder url="file://$MODULE_DIR$/target/debug/build/solana-program-6b1eb0c28f8dc4dd/out" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/debug/build/syn-24f570777b683a24/out" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/debug/build/typenum-6bab5dbaafc31f6e/out" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/programs/games/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
