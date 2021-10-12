@@ -6,6 +6,7 @@ var Inventory_1 = require("./pages/Inventory");
 var Library_1 = require("./pages/Library");
 var Marketplace_1 = require("./pages/Marketplace");
 var Demo1_players_1 = require("./demos/Demo1_players");
+var Demo2_achievements_1 = require("./demos/Demo2_achievements");
 exports.routes = [
     // Tmp
     {
@@ -32,5 +33,10 @@ exports.routes = [
         path: "/demo1",
         name: "[DEV] Demo 1 (Players)",
         component: Demo1_players_1["default"]
+    },
+    {
+        path: "/demo2",
+        name: "[DEV] Demo 2 (Achievements; admin)",
+        component: Demo2_achievements_1["default"]
     }
 ];

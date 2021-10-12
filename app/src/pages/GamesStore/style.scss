@@ -272,32 +272,6 @@
             justify-content: space-evenly;
             padding-right: 30px;
     
-            .game{
-                position: relative;
-                border-radius: 30px;
-                overflow: hidden;
-                width: 200px;
-                height: 135px;
-                margin: 12px 14px;
-                .addButtton{
-                    position: absolute;
-                    right: 0;
-                    bottom: 0;
-                    width: 50px;
-                    height: 30px;
-                    background: #ffffff;
-                    border-top-left-radius: 50px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    cursor: pointer;
-                    transition: all .3s ease;
-                    &:hover{
-                        width: 60px;
-                        height: 40px;
-                    }
-                }
-            }
         }
     }
 
