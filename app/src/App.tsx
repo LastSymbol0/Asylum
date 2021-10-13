@@ -43,6 +43,7 @@ const theme = createTheme({
     }
   },
   typography: {
+    fontFamily: "Ubuntu",
     body1: {
       fontSize : 16,
     },
