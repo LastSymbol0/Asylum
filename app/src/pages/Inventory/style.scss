@@ -1,0 +1,39 @@
+.inventoryWrapper{
+    width: 100%;
+    padding: 30px;
+
+    .inventoryBlock{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .gameCategoryDivider{
+        padding: 43px 0 23px 0;
+        .deviderText{
+            position: relative;
+            width: fit-content;
+            width: -moz-fit-content;
+            &::after{
+                content: '';
+                position: absolute;
+                width: 610px;
+                height: 7px;
+                right: -640px;
+                top: calc(50% - 4px);
+                background: linear-gradient(90deg, rgba(51, 55, 135, 0.5) -2.3%, rgba(45, 202, 89, 0.5) 60%, rgba(45, 202, 89, 0) 100%);
+            }
+            &::before{
+                content: '';
+                position: absolute;
+                background: transparent;
+                width: 17px;
+                height: 17px;
+                border: 4px solid rgba(51, 55, 135, 0.5);
+                top: calc(50% - 9px);
+                right: -31px;
+                border-radius: 50%;
+            }
+        }
+    }
+}

@@ -1,14 +1,15 @@
 import './style.scss';
-import gameExample from "./../../assets/gameExample.png";
 import { Typography } from '@mui/material';
 
 
-const GameTile = () => {
+const GameTile = ({image}: {image: any}) => {
 
     return (
-    <div className="game" style={{background: `url(${gameExample})`}}>
-        <div className="addButtton">
-            <Typography variant="caption">Add</Typography>
+    <div className='gameItemWrapper'>
+        <div className="game" style={{background: `url(${image})`}}>
+            <div className="addButtton">
+                <Typography variant="caption">Add</Typography>
+            </div>
         </div>
     </div>
     ) 

@@ -40,6 +40,7 @@ var theme = core_1.createTheme({
         }
     },
     typography: {
+        fontFamily: "Ubuntu",
         body1: {
             fontSize: 16
         },
