@@ -24,6 +24,7 @@
     "@types/react-dom": "^16.9.14",
     "@types/react-redux": "^7.1.18",
     "asylum-sdk": "^0.0.0",
+    "formik": "^2.2.9",
     "ipfs-http-client": "^53.0.1",
     "material-ui-search-bar": "^1.0.0",
     "node-sass": "^6.0.1",
