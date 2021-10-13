@@ -2,3 +2,8 @@
   height: calc(100vh - 90px);
   overflow-y: scroll;
 }
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./assets/fonts/Ubuntu-Regular.ttf") format("truetype");
+}

@@ -113,6 +113,7 @@
   border-radius: 30px;
   overflow: hidden;
   margin-bottom: 35px;
+  transition: all 0.3s ease;
 }
 .GamesStoreWrapper .bannerWrapper .bannerLeftSideWrapper .Carousel .slide {
   width: 100%;
@@ -218,6 +219,13 @@
   background-size: cover !important;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.GamesStoreWrapper .bannerWrapper .suggestedContainer .suggested-first:hover, .GamesStoreWrapper .bannerWrapper .suggestedContainer .suggested-second:hover {
+  -webkit-box-shadow: 0px 1px 18px 11px rgba(23, 97, 212, 0.48);
+  -moz-box-shadow: 0px 1px 18px 11px rgba(23, 97, 212, 0.48);
+  box-shadow: 0px 1px 18px 11px rgba(23, 97, 212, 0.48);
 }
 .GamesStoreWrapper .bannerWrapper .suggestedContainer .suggested-first .label, .GamesStoreWrapper .bannerWrapper .suggestedContainer .suggested-second .label {
   position: absolute;
@@ -228,7 +236,7 @@
   top: 0;
   left: 0;
   color: black;
-  font-size: 24px;
+  font-size: 20px;
 }
 .GamesStoreWrapper .bannerWrapper .suggestedContainer .suggested-first .price, .GamesStoreWrapper .bannerWrapper .suggestedContainer .suggested-second .price {
   position: absolute;
@@ -242,7 +250,7 @@
   bottom: 0;
   right: 0;
   color: black;
-  font-size: 32px;
+  font-size: 22px;
   transition: all 0.2s ease;
   cursor: pointer;
 }
