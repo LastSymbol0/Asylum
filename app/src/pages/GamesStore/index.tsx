@@ -7,6 +7,8 @@ import gamePlaceholder1 from './../../assets/gamePlaceholder1.png';
 import gamePlaceholder2 from './../../assets/gamePlaceholder2.png';
 import gamePlaceholder3 from './../../assets/sliderPlaceholder.png';
 import GameTile from '../../components/GameTile';
+import DevPanelButton from '../../components/DevPanelForm';
+import { textAlign } from '@mui/material/node_modules/@mui/system';
 
 
 
@@ -72,6 +74,11 @@ const GamesStorePage = () => {
                     <GameTile />
                     <GameTile />
                     <GameTile />
+                </div>
+                <div style={{textAlign: 'center', width: '100%', padding: '40px 0px'}}>
+                    <DevPanelButton />
+                </div>
+                <div style={{height: '100px'}}>
                 </div>
             </div>
          
