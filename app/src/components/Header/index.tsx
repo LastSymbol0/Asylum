@@ -6,6 +6,8 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { homepath } from "../../routes";
 
 
 const Icon = () => {
@@ -26,7 +28,9 @@ const Header = () => {
     return (
         <div>
             <div className="HeaderWrapper">
-            <img src={logo} alt='logo'/>
+                <Link to={homepath}>
+                    <img src={logo} alt='logo'/>
+                </Link>
             <div className="HeaderRight">
 
                 <FormControl fullWidth>

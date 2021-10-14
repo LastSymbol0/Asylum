@@ -9,6 +9,7 @@ var gamePlaceholder1_png_1 = require("./../../assets/gamePlaceholder1.png");
 var gamePlaceholder2_png_1 = require("./../../assets/gamePlaceholder2.png");
 var sliderPlaceholder_png_1 = require("./../../assets/sliderPlaceholder.png");
 var GameTile_1 = require("../../components/GameTile");
+var SingleGameInfo_1 = require("../../components/SingleGameInfo");
 var gameExample_png_1 = require("./../../assets/gameExample.png");
 var game21_png_1 = require("./../../assets/game21.png");
 var game2_png_1 = require("./../../assets/game2.png");
@@ -19,8 +20,10 @@ var Rectangle23_png_1 = require("./../../assets/Rectangle23.png");
 var Rectangle2_png_1 = require("./../../assets/Rectangle2.png");
 var Rectangle25_png_1 = require("./../../assets/Rectangle25.png");
 var Rectangle26_png_1 = require("./../../assets/Rectangle26.png");
+var react_1 = require("react");
 var gamePosters = [gameExample_png_1["default"], game21_png_1["default"], game2_png_1["default"], Rectangle24_png_1["default"], Rectangle21_png_1["default"], Rectangle22_png_1["default"], Rectangle23_png_1["default"], Rectangle2_png_1["default"], Rectangle25_png_1["default"], Rectangle26_png_1["default"],];
 var GamesStorePage = function () {
+    var _a = react_1.useState(true), visibility = _a[0], setVisibility = _a[1];
     return React.createElement(React.Fragment, null,
         React.createElement("div", { className: "GamesStoreWrapper" },
             React.createElement("div", { className: "decor-1" }),
@@ -43,6 +46,7 @@ var GamesStorePage = function () {
                             React.createElement("div", { className: "label" }, "Suggested for you"),
                             React.createElement("div", { className: "price" }, "Add"))))),
             React.createElement("div", { className: "gamesList" },
+                React.createElement(SingleGameInfo_1["default"], { visibility: visibility, handleClose: function () { setVisibility(false); } }),
                 gamePosters.map(function (item, i) { return React.createElement(GameTile_1["default"], { image: item }); }),
                 gamePosters.map(function (item, i) { return React.createElement(GameTile_1["default"], { image: item }); }),
                 gamePosters.map(function (item, i) { return React.createElement(GameTile_1["default"], { image: item }); }))));

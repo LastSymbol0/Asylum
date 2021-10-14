@@ -6,4 +6,38 @@
 @font-face {
   font-family: "Ubuntu";
   src: url("./assets/fonts/Ubuntu-Regular.ttf") format("truetype");
+  font-weight: 400px;
+}
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./assets/fonts/Ubuntu-Bold.ttf") format("truetype");
+  font-weight: 700px;
+}
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./assets/fonts/Ubuntu-Italic.ttf") format("truetype");
+  font-weight: 400px;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./assets/fonts/Ubuntu-Light.ttf") format("truetype");
+  font-weight: 300px;
+}
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./assets/fonts/Ubuntu-LightItalic.ttf") format("truetype");
+  font-weight: 300px;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./assets/fonts/Ubuntu-Medium.ttf") format("truetype");
+  font-weight: 500px;
+}
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./assets/fonts/Ubuntu-MediumItalic.ttf") format("truetype");
+  font-weight: 500px;
+  font-style: italic;
 }

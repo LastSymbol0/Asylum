@@ -19,6 +19,8 @@ const NavigationPanel = ({ pages }: { pages: Route[] }) => {
     const location = useLocation();
     const currentTab: string = location.pathname;
 
+
+
     const achievements = [
         {
             label: "achievement #1"
@@ -30,6 +32,7 @@ const NavigationPanel = ({ pages }: { pages: Route[] }) => {
             label: "achievement #3"
         }
     ]
+
 
     return (
         <div className="NavigationPanelWrapper">

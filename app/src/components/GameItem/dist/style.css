@@ -60,7 +60,7 @@
 }
 .gameItemBox .itemName {
   padding: 11px 0;
-  font-weight: 500;
+  font-weight: bold;
 }
 .gameItemBox .dataBox {
   display: flex;

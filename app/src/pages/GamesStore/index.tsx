@@ -7,6 +7,7 @@ import gamePlaceholder1 from './../../assets/gamePlaceholder1.png';
 import gamePlaceholder2 from './../../assets/gamePlaceholder2.png';
 import gamePlaceholder3 from './../../assets/sliderPlaceholder.png';
 import GameTile from '../../components/GameTile';
+import SingleGameInfo from '../../components/SingleGameInfo';
 
 import gameExample from "./../../assets/gameExample.png";
 import gameExample1 from "./../../assets/game21.png";
@@ -18,12 +19,14 @@ import gameExample6 from "./../../assets/Rectangle23.png";
 import gameExample7 from "./../../assets/Rectangle2.png";
 import gameExample8 from "./../../assets/Rectangle25.png";
 import gameExample9 from "./../../assets/Rectangle26.png";
+import { useState } from 'react';
 
 const gamePosters = [gameExample, gameExample1, gameExample2, gameExample3, gameExample4, gameExample5, gameExample6, gameExample7, gameExample8, gameExample9,]
 
 
 
 const GamesStorePage = () => {
+    const [visibility, setVisibility] = useState(true);
 
     return <>
         
@@ -63,6 +66,8 @@ const GamesStorePage = () => {
                     </div>
                 </div>
                 <div className="gamesList">
+
+                    <SingleGameInfo visibility={visibility} handleClose={ () => { setVisibility(false) }}/>
 
                     {
                         gamePosters.map((item, i) => <GameTile image={item} />)
