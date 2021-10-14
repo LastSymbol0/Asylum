@@ -50,7 +50,7 @@ const DevPanelForm = () => {
             placeholder={`link to your game's image`}
             onChange={formik.handleChange}
             error={formik.touched.game_cover && Boolean(formik.errors.game_cover)}
-            helperText='link to an image (to display it for users and NFTs visualization)'
+            helperText='Link to an image (will be used as NFT image)'
           />
           </div>
           <div className='devPanelInputField' >
@@ -63,7 +63,7 @@ const DevPanelForm = () => {
             value={formik.values.game_description}
             onChange={formik.handleChange}
             error={formik.touched.game_cover && Boolean(formik.errors.game_description)}
-            helperText='link to text description (to display it for users)'
+            helperText='link to text description (will be used as NFT description)'
           />
           </div>
           <div className='devPanelInputField' >
@@ -76,7 +76,7 @@ const DevPanelForm = () => {
             value={formik.values.game_images_links}
             placeholder='Links'
             onChange={formik.handleChange}
-            helperText={`Add links to images separated by comma.list of links to the images (screenshots, or other images to display for users)`}
+            helperText={`Links list separated by comma. Could be screenshots, arts, or any other images`}
             error={formik.touched.game_cover && Boolean(formik.errors.game_images_links)}
           />
           </div>
@@ -90,7 +90,7 @@ const DevPanelForm = () => {
             value={formik.values.game_token_mint_account}
             onChange={formik.handleChange}
             error={formik.touched.game_cover && Boolean(formik.errors.game_token_mint_account)}
-            helperText={`mint acc address (optional) to display to user his in-game balance`}
+            helperText={`[Optional] In-game token mint address. Will be used to display user's in-game balance`}
           />
           </div>
           <div className='devPanelInputField' >
@@ -102,7 +102,7 @@ const DevPanelForm = () => {
             label="Game items mint accounts"
             value={formik.values.game_items_mint_accounts}
             onChange={formik.handleChange}
-            helperText={`Add account addresses by comma. This is a list of mint account addresses (optional) to display to user his in-game inventory, give a possibility to manage it`}
+            helperText={`[Optional] List of mint address for in-game items, separeted by comma`}
             error={formik.touched.game_cover && Boolean(formik.errors.game_items_mint_accounts)}
           />
           </div>
