@@ -138,9 +138,11 @@
                }
            }
             .achievmentsContainer{
+                padding: 15px 0;
                 ul{
                     padding: 0;
-                    margin: 0;
+                    margin: 0 !important;
+                    // margin-top: 0;
                     text-align: left;
                     margin-top: 20px;
                     li{
@@ -148,6 +150,10 @@
                         margin-top: 7px;
                    }
                }
+                .MuiTypography-root{
+                    font-size: small;
+                    //width: fit-content;
+                }
            }
        }
         .contactUsContainer{

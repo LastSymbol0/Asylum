@@ -3,86 +3,145 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import SearchBar from '../../components/SearchBar';
 
-import gamePlaceholder1 from './../../assets/gamePlaceholder1.png';
-import gamePlaceholder2 from './../../assets/gamePlaceholder2.png';
-import gamePlaceholder3 from './../../assets/sliderPlaceholder.png';
 import GameTile from '../../components/GameTile';
 import DevPanelButton from '../../components/DevPanelForm';
-import { textAlign } from '@mui/material/node_modules/@mui/system';
-
-import gameExample from "./../../assets/gameExample.png";
-import gameExample1 from "./../../assets/game21.png";
-import gameExample2 from "./../../assets/game2.png";
-import gameExample3 from "./../../assets/Rectangle24.png";
-import gameExample4 from "./../../assets/Rectangle21.png";
-import gameExample5 from "./../../assets/Rectangle22.png";
-import gameExample6 from "./../../assets/Rectangle23.png";
-import gameExample7 from "./../../assets/Rectangle2.png";
-import gameExample8 from "./../../assets/Rectangle25.png";
-import gameExample9 from "./../../assets/Rectangle26.png";
-
-const gamePosters = [gameExample, gameExample1, gameExample2, gameExample3, gameExample4, gameExample5, gameExample6, gameExample7, gameExample8, gameExample9,]
 
 
+import { useWallet } from '@solana/wallet-adapter-react'
+import { PublicKey } from '@solana/web3.js'
+import { useSelector } from 'react-redux';
+import { GameState, selectNftGames } from '../../nft-store/games/gamesNftStore';
+import { RootState } from '../../app/store';
+import { bannerGames, friendsPlayGame, suggestedForYouGame } from '../../nft-store/games/dummyGames';
+
+
+const GamesCatalog = ({ gamesInCatalogIds, isDisabled, gamesData }:
+    {
+        gamesInCatalogIds: PublicKey[],
+        isDisabled: boolean,
+        gamesData: Record<string, GameState>
+    }) => {
+    return (
+        <div className="gamesList">
+            {gamesInCatalogIds.map((item, i) => {
+                const data = gamesData[item.toString()]
+                const loaded = data.status === 'loaded'
+
+                const onAdd = () => { }
+                const onLaunch = () => {
+                    if (loaded)
+                        window?.open(data.game?.launchUrl, '_blank')?.focus()
+                }
+
+                return <GameTile
+                    disabled={isDisabled}
+                    loading={data.status === 'inProgress'}
+                    loadingFailed={data.status === 'failed'}
+                    image={loaded ? data.game?.cover : undefined}
+                    onAdd={onAdd}
+                    onLaunch={onLaunch} />
+            })}
+        </div>)
+}
 
 const GamesStorePage = () => {
+    const gamesInCatalogIds = useSelector((state: RootState) => state.gamesStorePage.gamesInCatalog)
+    const gameFriendsPlayId = useSelector((state: RootState) => state.gamesStorePage.friendsPlay)
+    const gameSuggestedId = useSelector((state: RootState) => state.gamesStorePage.suggestedForYou)
+    const gamesBannerIds = useSelector((state: RootState) => state.gamesStorePage.bannerGames)
+
+    const gamesData = useSelector((state: RootState) => selectNftGames(state, [
+        ...gamesInCatalogIds,
+        gameFriendsPlayId,
+        gameSuggestedId,
+        ...gamesBannerIds
+    ]))
+
+
+    // const [isAdded, setIsAdded] = useState(false)
+    const wallet = useWallet()
+
+    // async function getProvider() {
+    //     if (!anchorWallet)
+    //         return
+
+    //     const network = "http://127.0.0.1:8899";
+    //     const connection = new Connection(network, "processed")
+
+    //     const provider = new Provider(
+    //         connection, anchorWallet, { preflightCommitment: "processed" },
+    //     )
+    //     return provider;
+    // }
+
+    // async function addGame(game: PublicKey) {
+    //     const provider = await getProvider()
+    //     const program = new Program(playersIdl as Idl, playersIdl.metadata.address, provider)
+
+    //     players.addGameToLibrary(program, game)
+    //         .catch(err => console.log("Transaction error: ", err))
+    //         .finally(() => setIsAdded(true))
+    // }
+
+
+    // const anywayLoseTile = <GameTile
+    //     image={anywayLoseCover}
+    //     isAdded={isAdded}
+    //     disabled={!wallet.connected}
+    //     onLaunch={() => window?.open("http://localhost:8000/Asylum_AnywayLose", '_blank')?.focus()}
+    //     onAdd={() => addGame(Keypair.generate().publicKey)} />
+
+    // const tilesWithRealGame = gamesInCatalogIds.map((item, i) => i === 0
+    //     ? anywayLoseTile
+    //     : <GameTile disabled={!wallet.connected} image={gamesData[item.toString()].status === 'loaded' ? item.} />)
 
     return <>
-        
-            <div className="GamesStoreWrapper">
+
+        <div className="GamesStoreWrapper">
             <div className="decor-1"></div>
-            <div className="decor-2"></div>  
-                <div className="bannerWrapper">
-                    <div className="bannerLeftSideWrapper">
+            <div className="decor-2"></div>
+            <div className="bannerWrapper">
+                <div className="bannerLeftSideWrapper">
 
                     <Carousel className="Carousel" showStatus={false} showIndicators={false} showThumbs={false} autoPlay>
-                        <div className="slide" style={{background: `url(${gamePlaceholder3})`}}></div>
-                        <div className="slide" style={{background: `url(${gamePlaceholder3})`}}></div>
-                        <div className="slide" style={{background: `url(${gamePlaceholder3})`}}></div>
+                        {bannerGames.map(x => {
+                            const data = gamesData[x.publicKey.toString()];
+                            return <div className="slide" style={{ background: `url(${data.game?.cover})` }}></div>
+                        })}
                     </Carousel>
 
                     <SearchBar />
 
 
-                    </div>
-                    <div className="suggestedContainer">
-                        <div className="suggested-firs--container">
-                            <div className="decor-bottom">
-                                <div className="suggested-first" style={{background: `url(${gamePlaceholder1})`}}>
-                                    <div className="label">Friends play</div>
-                                    <div className="price">Add</div>
-                                </div>
+                </div>
+                <div className="suggestedContainer">
+                    <div className="suggested-firs--container">
+                        <div className="decor-bottom">
+                            <div className="suggested-first" style={{ background: `url(${gamesData[friendsPlayGame.publicKey.toString()].game?.cover})` }}>
+                                <div className="label">Friends play</div>
+                                <div className={`price ${wallet.connected ? "active" : "disabled"}`}>Add</div>
                             </div>
                         </div>
-                        
-                        <div className="suggested-second--container">
-                            <div className="suggested-second" style={{background: `url(${gamePlaceholder2})`}}>
-                                <div className="label">Suggested for you</div>
-                                <div className="price">Add</div>
-                            </div>
-                        </div>
-
                     </div>
-                </div>
-                <div className="gamesList">
 
-                    {
-                        gamePosters.map((item, i) => <GameTile image={item} />)
-                    }
-                    {
-                        gamePosters.map((item, i) => <GameTile image={item} />)
-                    }
-                    {
-                        gamePosters.map((item, i) => <GameTile image={item} />)
-                    }
-                    
-                </div>
-                <div style={{textAlign: 'center', width: '100%', padding: '40px 0px'}}>
-                    <DevPanelButton />
-                </div>
-                <div style={{height: '100px'}}>
+                    <div className="suggested-second--container">
+                        <div className="suggested-second" style={{ background: `url(${gamesData[suggestedForYouGame.publicKey.toString()].game?.cover})` }}>
+                            <div className="label">Suggested for you</div>
+                            <div className={`price ${wallet.connected ? "active" : "disabled"}`}>Add</div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
+            <GamesCatalog gamesInCatalogIds={gamesInCatalogIds} isDisabled={!wallet.connected} gamesData={gamesData} />
+
+        <div style={{ textAlign: 'center', width: '100%', padding: '40px 0px' }}>
+            <DevPanelButton />
+        </div>
+        <div style={{ height: '100px' }}>
+        </div>
+    </div>
          
     </>
 }

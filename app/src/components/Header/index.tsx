@@ -6,6 +6,8 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { Typography } from "@mui/material";
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
+import { useWallet } from '@solana/wallet-adapter-react';
 
 
 const Icon = () => {
@@ -18,10 +20,12 @@ const Icon = () => {
 
 const Header = () => {
     const [lang, setLang] = React.useState('EN');
+    const [isWalletButtonOpen, setIsWalletButtonOpen] = React.useState(false);
+    const wallet = useWallet()
 
-        const handleChange = (event: SelectChangeEvent) => {
-            setLang(event.target.value);
-        };
+    const handleChange = (event: SelectChangeEvent) => {
+        setLang(event.target.value);
+    };
 
     return (
         <div>
@@ -54,8 +58,13 @@ const Header = () => {
                 </div>
                 
                
-                <button className="connectWallerButton">
-                    connect wallet
+                <button className="connectWallerButton" onClick={() => {
+                    if (!wallet.connected)
+                        setIsWalletButtonOpen(true)
+                }}>
+                    <WalletMultiButton />
+                    {/* {wallet.connected ? `connected (${wallet.publicKey})` : "connect wallet"} */}
+                    
                 </button> 
             </div>
         </div>
@@ -64,5 +73,5 @@ const Header = () => {
     )
     
 }
-
+/*J7WQvF...Rf3A*/
 export default Header;

@@ -265,10 +265,16 @@
                         font-size: 22px;
                         transition: all .2s ease;
                         cursor: pointer;
+                    }
+                    .price.active{
+                        background: #ffffff;
                         &:hover{
                             width: 90px;
                             height: 50px;
                         }
+                    }
+                    .price.disabled{
+                        background: #838383;
                     }
                 }
             }

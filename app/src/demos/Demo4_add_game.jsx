@@ -7,10 +7,10 @@ import { useEffect, useState } from 'react'
 import { Connection, PublicKey, Keypair } from '@solana/web3.js'
 import { Program, Provider } from '@project-serum/anchor'
 
-import { createShipMasterNFT } from '../lib/metaplex'
+// import { createShipMasterNFT } from '../lib/metaplex'
 // import { mintNFT } from '../lib/cli/src/commands/mint-nft'
 // import { mintNFT_ } from '../lib/cli/src/commands/mint-nft-custom'
-import { createMetaplexMetadata } from '../lib/helpers'
+// import { createMetaplexMetadata } from '../lib/helpers'
 import { mintNFT as mintNFT_web } from '../lib/metaplex/packages/web/src/actions/nft'
 
 const programID = new PublicKey(idl.metadata.address)
@@ -132,14 +132,14 @@ function GamesDemo() {
     const provider = await getProvider()
 
     try {
-        const metadata =  createMetaplexMetadata(
-          "Name hosted meta",
-          "",
-          "Desc hosted meta",
-          "https://raw.githubusercontent.com/LastSymbol0/Asylum_AnywayLose/536051b73f2a3021875188890fd48a1186ccd67a/public/pic/unit.svg",
-          "image",
-          [{ address: wallet.publicKey.toString(), share: 100 }]) ;
-        console.log("meta", metadata)
+        // const metadata =  createMetaplexMetadata(
+        //   "Name hosted meta",
+        //   "",
+        //   "Desc hosted meta",
+        //   "https://raw.githubusercontent.com/LastSymbol0/Asylum_AnywayLose/536051b73f2a3021875188890fd48a1186ccd67a/public/pic/unit.svg",
+        //   "image",
+        //   [{ address: wallet.publicKey.toString(), share: 100 }]) ;
+        // console.log("meta", metadata)
 
     } catch (err) {
         console.log("Transaction error: ", err)
