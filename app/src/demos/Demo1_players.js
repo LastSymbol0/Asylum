@@ -1,6 +1,4 @@
-import playersIdl from '../idl/players.json'
-import asylumIdl from '../idl/asylum.json'
-import { players, asylum } from '../lib'
+--
 
 import { useWallet } from '@solana/wallet-adapter-react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'

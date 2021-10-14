@@ -1,4 +1,6 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import gamesNftStoreReducer from '../nft-store/games/gamesNftStore';
+import itemsNftStoreReducer from '../nft-store/items/itemsNftStoreSlice';
 import accountPageReducer from '../pages/Account/store/accountSlice';
 import gamesStorePageReducer from '../pages/GamesStore/store/gamesStoreSlice';
 import inventoryPageReducer from '../pages/Inventory/store/inventorySlice';
@@ -12,6 +14,8 @@ export const store = configureStore({
     inventoryPage: inventoryPageReducer,
     libraryPage: libraryPageReducer,
     marketplacePage: marketplacePageReducer,
+    gamesNftStore: gamesNftStoreReducer,
+    itemsNftStore: itemsNftStoreReducer,
   },
 });
 
