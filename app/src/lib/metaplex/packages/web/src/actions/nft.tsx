@@ -3,7 +3,6 @@ import {
   createMint,
   createMetadata,
   programIds,
-  notify,
   ENV,
   updateMetadata,
   createMasterEdition,
@@ -47,7 +46,7 @@ const uploadToIPFS = async (file: { path: string, content: File}) => {
 
 export const mintNFT = async (
   connection: Connection,
-  wallet: WalletSigner | undefined,
+  wallet: WalletSigner,
   env: ENV,
   files: File[],
   metadata: {
@@ -66,8 +65,9 @@ export const mintNFT = async (
   maxSupply?: number,
 ): Promise<{
   metadataAccount: StringPublicKey;
-} | void> => {
-  if (!wallet?.publicKey) return;
+  mintAccount: StringPublicKey;
+}> => {
+  if (!wallet.publicKey) throw new Error("Wallet should have a public key.");
 
   const metadataContent = {
     name: metadata.name,
@@ -93,6 +93,8 @@ export const mintNFT = async (
     ...files,
     new File([JSON.stringify(metadataContent)], RESERVED_METADATA),
   ];
+
+  console.log("js meta", JSON.stringify(metadataContent))
 
   // const { instructions: pushInstructions, signers: pushSigners } =
   //   await prepPayForFilesTxn(wallet, realFiles, metadata);
@@ -283,15 +285,15 @@ export const mintNFT = async (
       updateSigners,
     );
 
-    notify({
-      message: 'Art created on Solana',
-      description: (
-        <a href={ipfsLink} target="_blank" rel="noopener noreferrer">
-          Arweave Link
-        </a>
-      ),
-      type: 'success',
-    });
+    // notify({
+    //   message: 'Art created on Solana',
+    //   description: (
+    //     <a href={ipfsLink} target="_blank" rel="noopener noreferrer">
+    //       IPFS Link
+    //     </a>
+    //   ),
+    //   type: 'success',
+    // });
 
     // TODO: refund funds
 
@@ -301,5 +303,8 @@ export const mintNFT = async (
   // 1. Jordan: --- upload file and metadata to storage API
   // 2. pay for storage by hashing files and attaching memo for each file
 
-  return { metadataAccount };
+  console.log("metadataAccount", metadataAccount)
+  console.log("mintKey", mintKey)
+
+  return { metadataAccount: metadataAccount, mintAccount: mintKey };
 };
