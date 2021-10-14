@@ -1,16 +1,30 @@
 .devPanelForm{
-    width: 60%;
+    width: 100%;
     margin: 0 auto;
+    text-align: center;
+    padding: 40px 0;
+
+
+
     .devPanelTextField{
       margin: 15px 0 !important;
     }
     
+    .devPanelInputField{
+      padding: 0px 20px;
+    }
+
     .MuiFormHelperText-root{
       color: #adadad !important;
       font-size: 14px !important;
+    }
+
+    .MuiTypography-root{
+      color: #dadada !important;
     }
     
     .MuiInput-underline:before{
       border-bottom: 1px solid rgba(224, 224, 224, 0.8) !important;
     }
   }
+  

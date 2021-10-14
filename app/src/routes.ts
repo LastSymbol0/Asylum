@@ -7,7 +7,7 @@ import { MarketplacePage } from './pages/Marketplace';
 
 import PlayersDemo from './demos/Demo1_players'
 import AchievementsDemo from './demos/Demo2_achievements'
-import DevPanel from './demos/Dev_Panel_Page';
+import GamesDemo from './demos/Demo4_add_game';
 
 export type Route = {
     path: string;
@@ -48,8 +48,8 @@ export const routes: Route[] = [
         component: AchievementsDemo
     },
     {
-        path: "/dev-panel",
-        name: "[Dev] DevPanel",
-        component: DevPanel
+        path: "/demo4",
+        name: "[DEV] Demo 4 (Games; admin)",
+        component: GamesDemo
     },
 ]
