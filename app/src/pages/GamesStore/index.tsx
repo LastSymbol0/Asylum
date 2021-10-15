@@ -21,6 +21,8 @@ const GamesCatalog = ({ gamesInCatalogIds, isDisabled, gamesData }:
         isDisabled: boolean,
         gamesData: Record<string, GameState>
     }) => {
+    // var searchQuery = "";
+
     return (
         <div className="gamesList">
             {gamesInCatalogIds.map((item, i) => {
@@ -32,6 +34,9 @@ const GamesCatalog = ({ gamesInCatalogIds, isDisabled, gamesData }:
                     if (loaded)
                         window?.open(data.game?.launchUrl, '_blank')?.focus()
                 }
+
+                // if (!data.game?.title.includes(searchQuery))
+                    // return <></>
 
                 return <GameTile
                     disabled={isDisabled}

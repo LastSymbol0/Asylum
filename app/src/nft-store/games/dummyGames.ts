@@ -55,10 +55,10 @@ export const bannerGames = [
 ]
 
 export const dummyGames: GameNftData[] = [
-    ...catalogGames.map(x => {
+    ...catalogGames.map((x, i) => {
         return {
             address: x.publicKey,
-            title: "Game dummy",
+            title: "Game dummy" + i,
             description: "This is a dummy game description. ".repeat(10),
             cover: x.img,
             launchUrl: "",
