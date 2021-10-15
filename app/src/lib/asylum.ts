@@ -56,7 +56,7 @@ export const initGamesCatalogAccount = async (program: Program): Promise<void> =
 
 export const addGameToCatalog = async (program: Program, game: PublicKey): Promise<void> => {
     const programId = program.programId;
-    const [account, _] = await findAchievementsAccountAddress(programId);
+    const [account, _] = await findGamesCatalogAccountAddress(programId);
 
     await program.rpc.addGameToCatalog(game, {
       accounts: {

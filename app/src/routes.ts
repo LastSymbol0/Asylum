@@ -37,19 +37,19 @@ export const routes: Route[] = [
         name: "Marketplace",
         component: MarketplacePage
     },
-    // {
-    //     path: "/demo1",
-    //     name: "[DEV] Demo 1 (Players)",
-    //     component: PlayersDemo
-    // },
-    // {
-    //     path: "/demo2",
-    //     name: "[DEV] Demo 2 (Achievements; admin)",
-    //     component: AchievementsDemo
-    // },
-    // {
-    //     path: "/demo4",
-    //     name: "[DEV] Demo 4 (Games; admin)",
-    //     component: GamesDemo
-    // },
+    {
+        path: "/demo1",
+        name: "[DEV] Demo 1 (Players)",
+        component: PlayersDemo
+    },
+    {
+        path: "/demo2",
+        name: "[DEV] Demo 2 (Achievements; admin)",
+        component: AchievementsDemo
+    },
+    {
+        path: "/demo4",
+        name: "[DEV] Demo 4 (Games; admin)",
+        component: GamesDemo
+    },
 ]

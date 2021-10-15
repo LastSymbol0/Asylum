@@ -9,10 +9,13 @@ import DevPanelButton from '../../components/DevPanelForm';
 
 import { useWallet } from '@solana/wallet-adapter-react'
 import { PublicKey } from '@solana/web3.js'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { GameState, selectNftGames } from '../../nft-store/games/gamesNftStore';
 import { RootState } from '../../app/store';
 import { bannerGames, friendsPlayGame, suggestedForYouGame } from '../../nft-store/games/dummyGames';
+import { useEffect } from 'react';
+import { fetchGamesCatalog, fetchGamesCatalogAndLoadNfts } from './store/thunks';
+import { useAsylumProgram } from '../../app/hooks';
 
 
 const GamesCatalog = ({ gamesInCatalogIds, isDisabled, gamesData }:
@@ -26,7 +29,7 @@ const GamesCatalog = ({ gamesInCatalogIds, isDisabled, gamesData }:
     return (
         <div className="gamesList">
             {gamesInCatalogIds.map((item, i) => {
-                const data = gamesData[item.toString()]
+                const data = gamesData[item.toString()] ?? {status: 'inProgress'}
                 const loaded = data.status === 'loaded'
 
                 const onAdd = () => { }
@@ -51,6 +54,7 @@ const GamesCatalog = ({ gamesInCatalogIds, isDisabled, gamesData }:
 
 const GamesStorePage = () => {
     const gamesInCatalogIds = useSelector((state: RootState) => state.gamesStorePage.gamesInCatalog)
+    const isCatalogFetched = useSelector((state: RootState) => state.gamesStorePage.isCatalogFetched)
     const gameFriendsPlayId = useSelector((state: RootState) => state.gamesStorePage.friendsPlay)
     const gameSuggestedId = useSelector((state: RootState) => state.gamesStorePage.suggestedForYou)
     const gamesBannerIds = useSelector((state: RootState) => state.gamesStorePage.bannerGames)
@@ -62,43 +66,15 @@ const GamesStorePage = () => {
         ...gamesBannerIds
     ]))
 
+    const dispatch = useDispatch();
+    const asylumProgram = useAsylumProgram("https://api.devnet.solana.com", true);
 
-    // const [isAdded, setIsAdded] = useState(false)
+    useEffect(() => {
+        if (asylumProgram && !isCatalogFetched)
+            dispatch(fetchGamesCatalogAndLoadNfts(asylumProgram))
+    }, [asylumProgram, dispatch, gamesInCatalogIds, isCatalogFetched])
+
     const wallet = useWallet()
-
-    // async function getProvider() {
-    //     if (!anchorWallet)
-    //         return
-
-    //     const network = "http://127.0.0.1:8899";
-    //     const connection = new Connection(network, "processed")
-
-    //     const provider = new Provider(
-    //         connection, anchorWallet, { preflightCommitment: "processed" },
-    //     )
-    //     return provider;
-    // }
-
-    // async function addGame(game: PublicKey) {
-    //     const provider = await getProvider()
-    //     const program = new Program(playersIdl as Idl, playersIdl.metadata.address, provider)
-
-    //     players.addGameToLibrary(program, game)
-    //         .catch(err => console.log("Transaction error: ", err))
-    //         .finally(() => setIsAdded(true))
-    // }
-
-
-    // const anywayLoseTile = <GameTile
-    //     image={anywayLoseCover}
-    //     isAdded={isAdded}
-    //     disabled={!wallet.connected}
-    //     onLaunch={() => window?.open("http://localhost:8000/Asylum_AnywayLose", '_blank')?.focus()}
-    //     onAdd={() => addGame(Keypair.generate().publicKey)} />
-
-    // const tilesWithRealGame = gamesInCatalogIds.map((item, i) => i === 0
-    //     ? anywayLoseTile
-    //     : <GameTile disabled={!wallet.connected} image={gamesData[item.toString()].status === 'loaded' ? item.} />)
 
     return <>
 
@@ -110,7 +86,7 @@ const GamesStorePage = () => {
 
                     <Carousel className="Carousel" showStatus={false} showIndicators={false} showThumbs={false} autoPlay>
                         {bannerGames.map(x => {
-                            const data = gamesData[x.publicKey.toString()];
+                            const data = gamesData[x.publicKey.toString()] ?? {cover: ''};
                             return <div className="slide" style={{ background: `url(${data.game?.cover})` }}></div>
                         })}
                     </Carousel>
@@ -147,7 +123,6 @@ const GamesStorePage = () => {
         <div style={{ height: '100px' }}>
         </div>
     </div>
-         
     </>
 }
 

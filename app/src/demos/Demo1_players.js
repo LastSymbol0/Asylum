@@ -1,10 +1,11 @@
---
-
 import { useWallet } from '@solana/wallet-adapter-react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import { useEffect, useState } from 'react'
 import { Connection, PublicKey } from '@solana/web3.js'
 import { Program, Provider } from '@project-serum/anchor'
+import playersIdl from '../idl/players.json'
+import asylumIdl from '../idl/asylum.json'
+import {asylum, players} from '../lib'
 
 const playersProgramID = new PublicKey(playersIdl.metadata.address)
 const asylumProgramID = new PublicKey(asylumIdl.metadata.address)
@@ -33,7 +34,7 @@ function PlayersDemo() {
   async function getProvider() {
     /* create the provider and return it to the caller */
     /* network set to local network for now */
-    const network = "http://127.0.0.1:8899";
+    const network = "https://api.devnet.solana.com";
     const opts = { preflightCommitment: "processed" }
     const connection = new Connection(network, opts.preflightCommitment)
 
