@@ -1,3 +1,4 @@
+import { StringPublicKey } from '@oyster/common';
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { PublicKey } from '@solana/web3.js'
 import { RootState } from '../../app/store';
@@ -17,9 +18,9 @@ export interface GameNftData {
 }
 
 export interface GamesNftStoreState {
-  inProgress: PublicKey[],
+  inProgress: StringPublicKey[],
   loaded: GameNftData[],
-  failed: PublicKey[]
+  failed: StringPublicKey[]
 }
 
 const initialState: GamesNftStoreState = {
@@ -42,7 +43,7 @@ export const gamesNtfStoreSlice = createSlice({
     builder.addCase(fetchGamesNfts.fulfilled, (state, action) =>
     {
         const succeed = action.payload.filter(x => x.ok).map(x => x.game as GameNftData)
-        const failed = action.payload.filter(x => !x.ok).map(x => x.mint)
+        const failed = action.payload.filter(x => !x.ok).map(x => x.mint.toString())
 
         console.log("succeed ids", succeed.map(x => x.address.toString( )))
         console.log("succeed", succeed)
@@ -56,13 +57,13 @@ export const gamesNtfStoreSlice = createSlice({
 
 const selectState = (state: RootState) => state.gamesNftStore;
 
-export const selectNftGames = (rootState: RootState, games: PublicKey[]) =>
+export const selectNftGames = (rootState: RootState, games: StringPublicKey[]) =>
 {
   const state = selectState(rootState)
 
-  const gamesInProgress = state.inProgress.filter(x => games.find(a => a.toString() === x.toString()));
-  const gamesLoaded = state.loaded.filter(x => games.find(a => a.toString() === x.address.toString()));
-  const gamesFailed = state.failed.filter(x => games.find(a => a.toString() === x.toString()));
+  const gamesInProgress = state.inProgress.filter(x => games.find(a => a === x));
+  const gamesLoaded = state.loaded.filter(x => games.find(a => a === x.address.toString()));
+  const gamesFailed = state.failed.filter(x => games.find(a => a === x));
 
   const result: Record<string, GameState> = {};
 

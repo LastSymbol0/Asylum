@@ -1,24 +1,22 @@
+import { StringPublicKey } from '@oyster/common';
 import { createSlice } from '@reduxjs/toolkit';
-import { PublicKey } from '@solana/web3.js'
-import { bannerGames as dummyBannerGames, catalogGames, friendsPlayGame, suggestedForYouGame } from '../../../nft-store/games/dummyGames';
+import { bannerGames as dummyBannerGames, friendsPlayGame, suggestedForYouGame } from '../../../nft-store/games/dummyGames';
 import { fetchGamesCatalog } from './thunks';
 
 export interface GamesStorePageState {
-  gamesInCatalog: PublicKey[],
+  gamesInCatalog: StringPublicKey[],
   isCatalogFetched: boolean,
-  friendsPlay: PublicKey,
-  suggestedForYou: PublicKey,
-  bannerGames: PublicKey[],
-  alreadyAdded: PublicKey[],
+  friendsPlay: StringPublicKey,
+  suggestedForYou: StringPublicKey,
+  bannerGames: StringPublicKey[],
 }
 
 const initialState: GamesStorePageState = {
-  gamesInCatalog: catalogGames.map(x => x.publicKey),
+  gamesInCatalog: [],//catalogGames.map(x => x.publicKey.toString()),
   isCatalogFetched: false,
-  friendsPlay: friendsPlayGame.publicKey,
-  suggestedForYou:  suggestedForYouGame.publicKey,
-  bannerGames: dummyBannerGames.map(x => x.publicKey),
-  alreadyAdded: [],
+  friendsPlay: friendsPlayGame.publicKey.toString(),
+  suggestedForYou:  suggestedForYouGame.publicKey.toString(),
+  bannerGames: dummyBannerGames.map(x => x.publicKey.toString()),
 };
 
 export const gamesStorePageSlice = createSlice({
@@ -33,8 +31,11 @@ export const gamesStorePageSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchGamesCatalog.fulfilled, (state, action) =>
     {
-        state.gamesInCatalog = state.gamesInCatalog.concat(action.payload)
+        const set = new Set(state.gamesInCatalog)
+        action.payload.forEach(x => set.add(x.toString()))
         state.isCatalogFetched = true
+
+        state.gamesInCatalog = [...set]
     })
     
     builder.addCase(fetchGamesCatalog.rejected, (state, action) =>

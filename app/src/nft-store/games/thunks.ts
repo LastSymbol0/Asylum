@@ -17,7 +17,7 @@ const fetchGamesNfts = createAsyncThunk('games/fetchNfts', async ({connection, m
                 title: data.data.name,
                 description: data.jsonData.description,
                 cover: data.jsonData.image,
-                launchUrl: data.jsonData.properties.launchUrl,
+                launchUrl: data.jsonData.properties.launch_url,
                 images: data.jsonData.properties.images_links,
                 tokenMint: data.jsonData.properties.token_mint_account,
                 itemsMint: data.jsonData.properties.items_mint_accounts,

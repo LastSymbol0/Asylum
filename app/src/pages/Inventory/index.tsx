@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { ItemState, selectNftItems } from '../../nft-store/items/itemsNftStoreSlice';
 import { GameState, selectNftGames } from '../../nft-store/games/gamesNftStore';
+import { StringPublicKey } from '@oyster/common';
 
 const anywayLoseItems = [
     {
@@ -39,9 +40,12 @@ const anywayLoseItems = [
     },
 ]
 
-const getGameItem = (key: PublicKey, data: Record<string, ItemState>, gamesData: Record<string, GameState>) => {
-    var itemData = data[key.toString()]
+const getGameItem = (key: StringPublicKey, data: Record<string, ItemState>, gamesData: Record<string, GameState>) => {
+    var itemData = data[key]
 
+    if (!!!itemData)
+        return <></>
+        
     var img: string;
     var name: string;
     var price: number;
@@ -85,10 +89,10 @@ const getGameItem = (key: PublicKey, data: Record<string, ItemState>, gamesData:
 const InventoryPage = () => {
     const allItemsCategorised = useSelector((state: RootState) => state.inventoryPage.itemsByGames)
 
-    const allItems = ([] as PublicKey[]).concat(...(allItemsCategorised.map(x => x.items)))
-    const allGames = ([] as PublicKey[]).concat(...(allItemsCategorised.map(x => x.gameId)))
-    const itemsData = useSelector((state: RootState) => selectNftItems(state, allItems))
-    const gamesData = useSelector((state: RootState) => selectNftGames(state, allGames))
+    const allItems = ([] as StringPublicKey[]).concat(...(allItemsCategorised.map(x => x.items.toString())))
+    const allGames = ([] as StringPublicKey[]).concat(...(allItemsCategorised.map(x => x.gameId.toString())))
+    const itemsData = useSelector((state: RootState) => selectNftItems(state, (allItems)))
+    const gamesData = useSelector((state: RootState) => selectNftGames(state, (allGames)))
 
 
 

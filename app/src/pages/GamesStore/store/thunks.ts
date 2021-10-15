@@ -1,6 +1,6 @@
 import { Program } from "@project-serum/anchor"
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { players, asylum } from '../../../lib'
+import { asylum } from '../../../lib'
 import { PublicKey } from '@solana/web3.js'
 import { fetchGamesNfts } from "../../../nft-store/games/thunks"
 
