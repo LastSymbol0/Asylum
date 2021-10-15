@@ -2,7 +2,7 @@ import './App.scss';
 import { getPhantomWallet } from '@solana/wallet-adapter-wallets';
 import { WalletProvider, ConnectionProvider } from '@solana/wallet-adapter-react';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import { BrowserRouter, Switch, Route, HashRouter } from "react-router-dom";
+import { BrowserRouter, Switch, Route, HashRouter, Redirect } from "react-router-dom";
 import {Grid} from '@mui/material'
 import NavigationPanel  from './components/NavigationPanel';
 import Header from './components/Header';
@@ -20,6 +20,9 @@ const Pages = ({ pages }: { pages: PageRoute[] }) => {
   return (
     <Switch>
       {pages.map((x => <Route path={x.path} key={x.path} exact component={x.component} />))}
+      <Route exact path="/">
+          <Redirect to="/gamesStore" />
+      </Route>
     </Switch>)
 }
 

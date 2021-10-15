@@ -1,9 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { PublicKey } from '@solana/web3.js'
+import { bannerGames as dummyBannerGames, catalogGames, friendsPlayGame, suggestedForYouGame } from '../../../nft-store/games/dummyGames';
 
 export interface GamesStorePageState {
+  gamesInCatalog: PublicKey[],
+  friendsPlay: PublicKey,
+  suggestedForYou: PublicKey,
+  bannerGames: PublicKey[],
+  alreadyAdded: PublicKey[],
 }
 
 const initialState: GamesStorePageState = {
+  gamesInCatalog: catalogGames.map(x => x.publicKey),
+  friendsPlay: friendsPlayGame.publicKey,
+  suggestedForYou:  suggestedForYouGame.publicKey,
+  bannerGames: dummyBannerGames.map(x => x.publicKey),
+  alreadyAdded: [],
 };
 
 export const gamesStorePageSlice = createSlice({

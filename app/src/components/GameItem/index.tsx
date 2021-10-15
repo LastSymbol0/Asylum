@@ -8,10 +8,10 @@ const GameItem = ({image, itemName, gameName, price} : { image: any, itemName: s
         <div className='gameItemBox'>
                 <div className='gameItem'>
                     <img className='itemImage' alt='item' src={image} />
-                    <div className="SellButton"><Typography variant="caption">Sell</Typography></div>
                     <div className='hoverBox'>
                         <Typography>View on blockchain</Typography>
                     </div>
+                    <div className="SellButton"><Typography variant="caption">Sell</Typography></div>
                 </div>
                 <Typography className="itemName">{itemName}</Typography>
                 <div className='dataBox'>
