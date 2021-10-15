@@ -26,6 +26,7 @@ const DevPanelForm = () => {
     title,
     description,
     cover,
+    launch_url,
     images_links,
     token_mint_account,
     items_mint_accounts,
@@ -33,6 +34,7 @@ const DevPanelForm = () => {
     title: string,
     description: string,
     cover: string,
+    launch_url: string,
     images_links: string[],
     token_mint_account?: PublicKey,
     items_mint_accounts?: PublicKey[],
@@ -54,6 +56,8 @@ const DevPanelForm = () => {
         images_links,
         token_mint_account,
         items_mint_accounts,
+        launch_url,
+        validation_level: 0,
       },
       creators: null,
       sellerFeeBasisPoints: 0
@@ -67,6 +71,7 @@ const DevPanelForm = () => {
     initialValues: {
       game_title: 'GameTitle',
       game_cover: 'https://upload.wikimedia.org/wikipedia/ru/archive/1/16/20210909030507%21%D0%9E%D0%B1%D0%BB%D0%BE%D0%B6%D0%BA%D0%B0_%D0%B8%D0%B3%D1%80%D1%8B_Control.jpg',
+      game_launch_url: 'https://upload.wikimedia.org/wikipedia/ru/archive/1/16/20210909030507%21%D0%9E%D0%B1%D0%BB%D0%BE%D0%B6%D0%BA%D0%B0_%D0%B8%D0%B3%D1%80%D1%8B_Control.jpg',
       game_description: 'Some game description',
       game_images_links: 'https://upload.wikimedia.org/wikipedia/ru/archive/1/16/20210909030507%21%D0%9E%D0%B1%D0%BB%D0%BE%D0%B6%D0%BA%D0%B0_%D0%B8%D0%B3%D1%80%D1%8B_Control.jpg, https://upload.wikimedia.org/wikipedia/ru/archive/1/16/20210909030507%21%D0%9E%D0%B1%D0%BB%D0%BE%D0%B6%D0%BA%D0%B0_%D0%B8%D0%B3%D1%80%D1%8B_Control.jpg',
       game_token_mint_account: '',
@@ -77,6 +82,7 @@ const DevPanelForm = () => {
       addGame({
         title: values.game_title,
         cover: values.game_cover,
+        launch_url: values.game_launch_url,
         description: values.game_description,
         images_links: values.game_images_links.split(','),
         token_mint_account: values.game_token_mint_account ? new PublicKey(values.game_token_mint_account) : undefined,
@@ -116,6 +122,20 @@ const DevPanelForm = () => {
             onChange={formik.handleChange}
             error={formik.touched.game_cover && Boolean(formik.errors.game_cover)}
             helperText='Link to an image (will be used as NFT image)'
+          />
+        </div>
+        <div className='devPanelInputField' >
+          <TextField
+            fullWidth
+            className='devPanelTextField'
+            id="game_launch_url"
+            name="game_launch_url"
+            label="Game launch url"
+            value={formik.values.game_launch_url}
+            placeholder={`link to your game`}
+            onChange={formik.handleChange}
+            error={formik.touched.game_launch_url && Boolean(formik.errors.game_launch_url)}
+            helperText='Link to your game'
           />
         </div>
         <div className='devPanelInputField' >

@@ -1,4 +1,5 @@
 import { Typography } from '@mui/material'
+import { PublicKey } from '@solana/web3.js'
 import GameItem from '../../components/GameItem'
 import './style.scss'
 
@@ -6,9 +7,11 @@ import spaceShip1 from './../../assets/AnywayLose_Items/unit.png';
 import spaceShip2 from './../../assets/AnywayLose_Items/unit2.png';
 import spaceShip3 from './../../assets/AnywayLose_Items/unit3.png';
 import spaceShip4 from './../../assets/AnywayLose_Items/unit4.png';
-import helmet from './../../assets/Riot_Helmet.png';
-import riot from './../../assets/Riot_Chestpiece.png';
-import g1 from './../../assets/g 1.png';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../app/store';
+import { ItemState, selectNftItems } from '../../nft-store/items/itemsNftStoreSlice';
+import { GameState, selectNftGames } from '../../nft-store/games/gamesNftStore';
+import { StringPublicKey } from '@oyster/common';
 
 const anywayLoseItems = [
     {
@@ -37,113 +40,89 @@ const anywayLoseItems = [
     },
 ]
 
+const getGameItem = (key: StringPublicKey, data: Record<string, ItemState>, gamesData: Record<string, GameState>) => {
+    var itemData = data[key]
 
-const dummyItems = [
-    {
-        image: helmet,
-        itemName: 'Name of the item',
-        gameName: 'Game name',
-        price: '200,50',
-    },
-    {
-        image: riot,
-        itemName: 'Name of the item',
-        gameName: 'Game name',
-        price: '1500,725',
-    },
-    {
-        image: g1,
-        itemName: 'Name of the item',
-        gameName: 'Game name',
-        price: '7,0',
-    },
-    {
-        image: riot,
-        itemName: 'Name of the item',
-        gameName: 'Game name',
-        price: '1500,725',
-    },
-    {
-        image: helmet,
-        itemName: 'Name of the item',
-        gameName: 'Game name',
-        price: '200,50',
-    },
+    if (!!!itemData)
+        return <></>
+        
+    var img: string;
+    var name: string;
+    var price: number;
+    var game: any;
 
-]
+    switch (itemData.status) {
+        case 'failed':
+            img = "<failed>";
+            name = "<failed>";
+            price = 0;
+            break;
+        case 'inProgress':
+            img = "";
+            name = "";
+            price = 0;
+            break;
+        case 'loaded':
+            img = itemData.item?.image as string;
+            name = itemData.item?.name as string;
+            price = itemData.item?.price as number;
+            const gameId = itemData.item?.game.toString() 
+            game = gameId ? gamesData[gameId]?.game : undefined
+            break;
+        default:
+            img = "";
+            name = "";
+            price = 0;
+            break;
+    }
+
+
+    return <GameItem 
+        image={img}
+        itemName={name}
+        gameName={game?.title ?? ""}
+        price={price.toString()}
+    />
+}
+
 
 const InventoryPage = () => {
-    return <div className='inventoryWrapper'>
+    const allItemsCategorised = useSelector((state: RootState) => state.inventoryPage.itemsByGames)
 
-    <div className='gameCategoryDivider'>
-        <Typography className='deviderText'>All items</Typography>
-    </div>
-        
-        <div className='inventoryBlock'>
-            {anywayLoseItems.map((item, i) => 
-                 <GameItem 
-                    image={item.image}
-                    itemName={item.itemName}
-                    gameName={item.gameName}
-                    price={item.price}
-                />
-            )}
-            {dummyItems.map((item, i) => 
-                 <GameItem 
-                    image={item.image}
-                    itemName={item.itemName}
-                    gameName={item.gameName}
-                    price={item.price}
-                />
-            )}
-            
-            
+    const allItems = ([] as StringPublicKey[]).concat(...(allItemsCategorised.map(x => x.items.toString())))
+    const allGames = ([] as StringPublicKey[]).concat(...(allItemsCategorised.map(x => x.gameId.toString())))
+    const itemsData = useSelector((state: RootState) => selectNftItems(state, (allItems)))
+    const gamesData = useSelector((state: RootState) => selectNftGames(state, (allGames)))
 
-        </div>
+
+
+    return (
+    <div className='inventoryWrapper'>
 
         <div className='gameCategoryDivider'>
-            <Typography className='deviderText'>Items from game “AnywayLose”</Typography>
+            <Typography className='deviderText'>All items</Typography>
         </div>
-
         <div className='inventoryBlock'>
-
-            {anywayLoseItems.map((item, i) => 
-                 <GameItem 
-                    image={item.image}
-                    itemName={item.itemName}
-                    gameName={item.gameName}
-                    price={item.price}
-                />
-            )}
-
+            {allItems.map(item => getGameItem(item, itemsData, gamesData))}
         </div>
 
-        <div className='gameCategoryDivider'>
-            <Typography className='deviderText'>Items from game “Your favorite shooter”</Typography>
-        </div>
 
-        <div className='inventoryBlock'>
+        {allItemsCategorised.map(item => {
+            const game = gamesData[item.gameId.toString()]?.game
 
-            {dummyItems.map((item, i) => 
-                 <GameItem 
-                    image={item.image}
-                    itemName={item.itemName}
-                    gameName={item.gameName}
-                    price={item.price}
-                />
-            )}
-            {dummyItems.map((item, i) => 
-                 <GameItem 
-                    image={item.image}
-                    itemName={item.itemName}
-                    gameName={item.gameName}
-                    price={item.price}
-                />
-            )}
+            return (
+            <>
+                <div className='gameCategoryDivider'>
+                    <Typography className='deviderText'>Items from game “{game?.title ?? ""}”</Typography>
+                </div>
 
-        </div>
-
-    </div>
+                <div className='inventoryBlock'>
+                    {allItems.map(item => getGameItem(item, itemsData, gamesData))}
+                </div>
+            </>
+            )
+        })}
+    </div>)
 }
 
 export { InventoryPage }

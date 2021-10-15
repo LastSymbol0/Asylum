@@ -1,26 +1,60 @@
 import GameTile from '../../components/GameTile';
 import './style.scss'
 
-import anywayLoseCover from "./../../assets/AnywayLoseCover2.png";
-import gameExample from "./../../assets/gameExample.png";
-import gameExample1 from "./../../assets/game21.png";
-import gameExample2 from "./../../assets/game2.png";
-import gameExample3 from "./../../assets/Rectangle24.png";
-import gameExample4 from "./../../assets/Rectangle21.png";
 import { Typography } from '@material-ui/core';
+import { useWallet } from '@solana/wallet-adapter-react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { usePlayersProgram } from '../../app/hooks';
+import { RootState } from '../../app/store';
+import { GameState, selectNftGames } from '../../nft-store/games/gamesNftStore';
+import { fetchGamesLibraryAndLoadNfts } from './store/thunks';
+import { PublicKey } from '@solana/web3.js'
+import { StringPublicKey } from '@oyster/common';
 
-const gamePosters = [gameExample, gameExample1, gameExample2, gameExample3, gameExample4]
+const GamesLibrary = ({ gamesInLibraryIds, gamesData }:
+    {
+        gamesInLibraryIds: StringPublicKey[],
+        gamesData: Record<string, GameState>
+    }) => {
+    return (
+        <div className="gamesList">
+            {gamesInLibraryIds.map((item, i) => {
+                const data = gamesData[item] ?? {status: 'inProgress'}
+                const loaded = data.status === 'loaded'
 
+                const onAdd = () => { }
+                const onLaunch = () => {
+                    if (loaded)
+                        window?.open(data.game?.launchUrl, '_blank')?.focus()
+                }
+
+                return <GameTile
+                    disabled={false}
+                    loading={data.status === 'inProgress'}
+                    loadingFailed={data.status === 'failed'}
+                    image={loaded ? data.game?.cover : undefined}
+                    isAdded={true}
+                    onAdd={onAdd}
+                    onLaunch={onLaunch} />
+            })}
+        </div>)
+}
 
 const LibraryPage = () => {
-    const anywayLoseTile = <GameTile
-        image={anywayLoseCover}
-        isAdded
-        onLaunch={() => window?.open("http://localhost:8000/Asylum_AnywayLose", '_blank')?.focus()} />
+    const gamesInLibraryIds = useSelector((state: RootState) => state.libraryPage.gamesInLibrary)
+    const isLibraryFetched = useSelector((state: RootState) => state.libraryPage.isLibraryFetched)
 
-    const tilesWithRealGame = gamePosters.map((item, i) => i === 0
-        ? anywayLoseTile
-        : <GameTile image={item} isAdded />)
+    const gamesData = useSelector((state: RootState) => selectNftGames(state, gamesInLibraryIds))
+
+    const dispatch = useDispatch();
+    const wallet = useWallet()
+    const playersProgram = usePlayersProgram();
+
+    useEffect(() => {
+        if (playersProgram && !isLibraryFetched && wallet && wallet.connected)
+            dispatch(fetchGamesLibraryAndLoadNfts({player: wallet.publicKey as PublicKey, program: playersProgram}))
+    }, [playersProgram, dispatch, gamesInLibraryIds, isLibraryFetched, wallet])
 
 
     return (
@@ -29,13 +63,7 @@ const LibraryPage = () => {
         <div className='libraryHeader'>
             <Typography className='libraryHeaderText'>My games</Typography>
         </div>
-        <div className="gamesList">
-
-            {
-                tilesWithRealGame
-            }
-
-        </div>
+            <GamesLibrary gamesInLibraryIds={gamesInLibraryIds} gamesData={gamesData} />
     </div>)
 }
 
