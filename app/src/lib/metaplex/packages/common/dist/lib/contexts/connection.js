@@ -308,7 +308,6 @@ const sendTransaction = async (connection, wallet, instructions, signers, awaitC
                     react_1.default.createElement(ExplorerLink_1.ExplorerLink, { address: txid, type: "transaction" }))),
                 type: 'error',
             });
-            // eslint-disable-next-line no-restricted-globals
             throw new Error(`Raw transaction ${txid} failed (${JSON.stringify(status)})`);
         }
     }

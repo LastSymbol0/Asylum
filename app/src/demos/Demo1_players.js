@@ -3,6 +3,7 @@ import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import { useEffect, useState } from 'react'
 import { Connection, PublicKey } from '@solana/web3.js'
 import { Program, Provider } from '@project-serum/anchor'
+
 import playersIdl from '../idl/players.json'
 import asylumIdl from '../idl/asylum.json'
 import {asylum, players} from '../lib'

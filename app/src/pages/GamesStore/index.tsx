@@ -3,72 +3,30 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import SearchBar from '../../components/SearchBar';
 
-import GameTile from '../../components/GameTile';
+import SingleGameInfo from '../../components/SingleGameInfo';
+
+import { useState } from 'react';
+
 import DevPanelButton from '../../components/DevPanelForm';
 
 
 import { useWallet } from '@solana/wallet-adapter-react'
 import { PublicKey } from '@solana/web3.js'
 import { useDispatch, useSelector } from 'react-redux';
-import { GameState, selectNftGames } from '../../nft-store/games/gamesNftStore';
+import { selectNftGames } from '../../nft-store/games/gamesNftStore';
 import { RootState } from '../../app/store';
 import { useEffect } from 'react';
-import { fetchGamesCatalog, fetchGamesCatalogAndLoadNfts } from './store/thunks';
+import { fetchGamesCatalogAndLoadNfts } from './store/thunks';
 import { useAsylumProgram, usePlayersProgram } from '../../app/hooks';
-import { asylum, players } from '../../lib';
-import { fetchGamesLibrary, fetchGamesLibraryAndLoadNfts } from '../Library/store/thunks';
-import { StringPublicKey } from '@oyster/common';
-
-
-const GamesCatalog = ({ gamesInCatalogIds, gamesInLibraryIds, isDisabled, gamesData }:
-    {
-        gamesInCatalogIds: StringPublicKey[],
-        gamesInLibraryIds:  StringPublicKey[],
-        isDisabled: boolean,
-        gamesData: Record<string, GameState>
-    }) => {
-    const playersProgram = usePlayersProgram();
-    const dispatch = useDispatch();
-    const wallet = useWallet()
-
-    const onGameAdd = (game: StringPublicKey) => {
-        if (playersProgram)
-            players.addGameToLibrary(playersProgram, new PublicKey(game))
-            .then(() => dispatch(fetchGamesLibrary({player: wallet.publicKey as PublicKey, program: playersProgram})))
-    }
-
-    isDisabled = isDisabled && !!!playersProgram
-
-    // var searchQuery = "";
-
-    return (
-        <div className="gamesList">
-            {gamesInCatalogIds.map((item, i) => {
-                const data = gamesData[item] ?? {status: 'inProgress'}
-                const loaded = data.status === 'loaded'
-
-                const onAdd = () => { onGameAdd(item) }
-                const onLaunch = () => {
-                    if (loaded)
-                        window?.open(data.game?.launchUrl, '_blank')?.focus()
-                }
-
-                // if (!data.game?.title.includes(searchQuery))
-                    // return <></>
-
-                return <GameTile
-                    disabled={isDisabled}
-                    loading={data.status === 'inProgress'}
-                    loadingFailed={data.status === 'failed'}
-                    image={loaded ? data.game?.cover : undefined}
-                    isAdded={gamesInLibraryIds.indexOf(item) !== -1}
-                    onAdd={onAdd}
-                    onLaunch={onLaunch} />
-            })}
-        </div>)
-}
+import { fetchGamesLibraryAndLoadNfts } from '../Library/store/thunks';
+import GamesCatalog from './GamesCatalog';
 
 const GamesStorePage = () => {
+    // const [visibility, setVisibility] = useState(true);
+    const [selected, setSelected] = useState('')
+
+
+
     const gamesInCatalogIds = useSelector((state: RootState) => state.gamesStorePage.gamesInCatalog)
     const gamesInLibraryIds = useSelector((state: RootState) => state.libraryPage.gamesInLibrary)
     const isCatalogFetched = useSelector((state: RootState) => state.gamesStorePage.isCatalogFetched)
@@ -109,9 +67,10 @@ const GamesStorePage = () => {
                 <div className="bannerLeftSideWrapper">
 
                     <Carousel className="Carousel" showStatus={false} showIndicators={false} showThumbs={false} autoPlay>
-                        {gamesBannerIds.map(x => {
+
+                        {gamesBannerIds.map((x, i) => {
                             const data = gamesData[x] ?? {cover: ''};
-                            return <div className="slide" style={{ background: `url(${data.game?.cover})` }}></div>
+                            return <div key={i} className="slide" style={{ background: `url(${data.game?.cover})` }}></div>
                         })}
                     </Carousel>
 
@@ -122,24 +81,41 @@ const GamesStorePage = () => {
                 <div className="suggestedContainer">
                     <div className="suggested-firs--container">
                         <div className="decor-bottom">
+                        <div className='suggested-first-wrapper'>
+
                             <div className="suggested-first" style={{ background: `url(${gamesData[gameFriendsPlayId]?.game?.cover})` }}>
                                 <div className="label">Friends play</div>
-                                <div className={`price ${wallet.connected ? "active" : "disabled"}`}>Add</div>
+                                
                             </div>
-                        </div>
-                    </div>
-
-                    <div className="suggested-second--container">
-                        <div className="suggested-second" style={{ background: `url(${gamesData[gameSuggestedId]?.game?.cover})` }}>
-                            <div className="label">Suggested for you</div>
+                            </div>
                             <div className={`price ${wallet.connected ? "active" : "disabled"}`}>Add</div>
                         </div>
                     </div>
 
+                    <div className="suggested-second--container">
+                            <div className="suggested-second" style={{ background: `url(${gamesData[gameSuggestedId]?.game?.cover})` }}
+                            onClick={() => setSelected(gameSuggestedId)}>
+                                <div className="label">Suggested for you</div>
+                            </div>
+                        
+                    </div>
+
+
+                    <SingleGameInfo
+                        visibility={selected !== ''}
+                        game={gamesData[selected]?.game}
+                        handleClose={ () => { setSelected('') }}
+                        isAdded={gamesInLibraryIds.indexOf(selected) !== -1}/>
+
                 </div>
             </div>
 
-            <GamesCatalog gamesInCatalogIds={gamesInCatalogIds} gamesInLibraryIds={gamesInLibraryIds} isDisabled={!wallet.connected} gamesData={gamesData} />
+            <GamesCatalog
+                gamesInCatalogIds={gamesInCatalogIds}
+                gamesInLibraryIds={gamesInLibraryIds}
+                isDisabled={!wallet.connected}
+                gamesData={gamesData}
+                setSelected={setSelected} />
 
         <div style={{ textAlign: 'center', width: '100%', padding: '40px 0px' }}>
             <DevPanelButton />

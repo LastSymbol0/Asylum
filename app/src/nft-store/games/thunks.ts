@@ -23,6 +23,7 @@ const fetchGamesNfts = createAsyncThunk('games/fetchNfts', async ({connection, m
                 itemsMint: data.jsonData.properties.items_mint_accounts,
                 validationLevel: data.jsonData.properties.validation_level,
             }
+            console.log('h ', gameNft)
             return {ok: true, mint: mint, game: gameNft}
         } catch (e) {
             return {ok: false, mint: mint, game: null}

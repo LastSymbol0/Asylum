@@ -71,6 +71,10 @@ export const selectNftGames = (rootState: RootState, games: StringPublicKey[]) =
   gamesLoaded.forEach(x => result[x.address.toString()] = { status: 'loaded', game: x })
   gamesFailed.forEach(x => result[x.toString()] = { status: 'failed' })
 
+  console.log('gamesNFT results: ', result)
+  console.log('gamesNFT state: ', state.loaded)
+  console.log('gamesNFT gamess: ', games)
+
   return result;
 }
 

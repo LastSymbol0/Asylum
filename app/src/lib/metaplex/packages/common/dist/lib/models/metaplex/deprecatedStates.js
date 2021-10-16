@@ -210,7 +210,7 @@ exports.DEPRECATED_SCHEMA = new Map([
             kind: 'struct',
             fields: [
                 ['items', [WinningConfigStateItem]],
-                ['moneyPushedToAcceptPayment', 'u8'], // bool
+                ['moneyPushedToAcceptPayment', 'u8'],
             ],
         },
     ],
@@ -220,7 +220,7 @@ exports.DEPRECATED_SCHEMA = new Map([
             kind: 'struct',
             fields: [
                 ['primarySaleHappened', 'u8'],
-                ['claimed', 'u8'], // bool
+                ['claimed', 'u8'],
             ],
         },
     ],
@@ -258,7 +258,7 @@ exports.DEPRECATED_SCHEMA = new Map([
             fields: [
                 ['key', 'u8'],
                 ['participationRedeemed', 'u8'],
-                ['itemsRedeemed', 'u8'], // bool
+                ['itemsRedeemed', 'u8'],
             ],
         },
     ],

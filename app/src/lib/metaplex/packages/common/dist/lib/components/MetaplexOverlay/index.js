@@ -15,7 +15,7 @@ const MetaplexOverlay = (props) => {
             pointerEvents: 'auto',
             justifyContent: 'center',
         } }, children));
-    return (react_1.default.createElement(antd_1.Modal, { centered: true, modalRender: () => content, width: '100vw', mask: false, ...rest }));
+    return (react_1.default.createElement(antd_1.Modal, Object.assign({ centered: true, modalRender: () => content, width: '100vw', mask: false }, rest)));
 };
 exports.MetaplexOverlay = MetaplexOverlay;
 //# sourceMappingURL=index.js.map

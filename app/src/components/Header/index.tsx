@@ -6,6 +6,8 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { homepath } from "../../routes";
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useWallet } from '@solana/wallet-adapter-react';
 
@@ -30,7 +32,9 @@ const Header = () => {
     return (
         <div>
             <div className="HeaderWrapper">
-            <img src={logo} alt='logo'/>
+                <Link to={homepath}>
+                    <img src={logo} alt='logo'/>
+                </Link>
             <div className="HeaderRight">
 
                 <FormControl fullWidth>
@@ -58,14 +62,11 @@ const Header = () => {
                 </div>
                 
                
-                <button className="connectWallerButton" onClick={() => {
-                    if (!wallet.connected)
-                        setIsWalletButtonOpen(true)
-                }}>
+                <div className="connectWallerButton">
                     <WalletMultiButton />
                     {/* {wallet.connected ? `connected (${wallet.publicKey})` : "connect wallet"} */}
                     
-                </button> 
+                </div> 
             </div>
         </div>
         </div>

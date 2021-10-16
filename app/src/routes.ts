@@ -15,6 +15,8 @@ export type Route = {
     component: () => JSX.Element;
 }
 
+export const homepath = '/gamesStore';
+
 export const routes: Route[] = [
     // Tmp
     {

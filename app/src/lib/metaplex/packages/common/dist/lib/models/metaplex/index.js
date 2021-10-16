@@ -182,8 +182,7 @@ class AuctionManager {
                         winningConfigType: it.winningConfigType,
                         safetyDeposit: boxes[it.safetyDepositBoxIndex],
                         amount: new bn_js_1.default(it.amount),
-                        masterEdition: ((_c = metadata === null || metadata === void 0 ? void 0 : metadata.info) === null || _c === void 0 ? void 0 : _c.masterEdition)
-                            ? masterEditions[metadata.info.masterEdition]
+                        masterEdition: ((_c = metadata === null || metadata === void 0 ? void 0 : metadata.info) === null || _c === void 0 ? void 0 : _c.masterEdition) ? masterEditions[metadata.info.masterEdition]
                             : undefined,
                     };
                 });
@@ -205,8 +204,7 @@ class AuctionManager {
                             winningConfigType: s.info.winningConfigType,
                             safetyDeposit,
                             amount,
-                            masterEdition: ((_a = metadata === null || metadata === void 0 ? void 0 : metadata.info) === null || _a === void 0 ? void 0 : _a.masterEdition)
-                                ? masterEditions[metadata.info.masterEdition]
+                            masterEdition: ((_a = metadata === null || metadata === void 0 ? void 0 : metadata.info) === null || _a === void 0 ? void 0 : _a.masterEdition) ? masterEditions[metadata.info.masterEdition]
                                 : undefined,
                         });
                     }
@@ -935,7 +933,7 @@ exports.SCHEMA = new Map([
             kind: 'struct',
             fields: [
                 ['instruction', 'u8'],
-                ['public', 'u8'], //bool
+                ['public', 'u8'],
             ],
         },
     ],
@@ -945,7 +943,7 @@ exports.SCHEMA = new Map([
             kind: 'struct',
             fields: [
                 ['instruction', 'u8'],
-                ['activated', 'u8'], //bool
+                ['activated', 'u8'],
             ],
         },
     ],

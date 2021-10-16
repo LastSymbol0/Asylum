@@ -175,7 +175,7 @@ exports.METADATA_SCHEMA = new Map([
             fields: [
                 ['instruction', 'u8'],
                 ['data', Data],
-                ['isMutable', 'u8'], // bool
+                ['isMutable', 'u8'],
             ],
         },
     ],

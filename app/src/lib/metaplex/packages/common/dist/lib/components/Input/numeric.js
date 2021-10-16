@@ -37,7 +37,7 @@ class NumericInput extends react_1.default.Component {
         };
     }
     render() {
-        return (react_1.default.createElement(antd_1.Input, { ...this.props, onChange: this.onChange, onBlur: this.onBlur, maxLength: 25 }));
+        return (react_1.default.createElement(antd_1.Input, Object.assign({}, this.props, { onChange: this.onChange, onBlur: this.onBlur, maxLength: 25 })));
     }
 }
 exports.NumericInput = NumericInput;
