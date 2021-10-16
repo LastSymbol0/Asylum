@@ -22,10 +22,7 @@ import { fetchGamesLibraryAndLoadNfts } from '../Library/store/thunks';
 import GamesCatalog from './GamesCatalog';
 
 const GamesStorePage = () => {
-    // const [visibility, setVisibility] = useState(true);
     const [selected, setSelected] = useState('')
-
-
 
     const gamesInCatalogIds = useSelector((state: RootState) => state.gamesStorePage.gamesInCatalog)
     const gamesInLibraryIds = useSelector((state: RootState) => state.libraryPage.gamesInLibrary)
@@ -83,9 +80,11 @@ const GamesStorePage = () => {
                         <div className="decor-bottom">
                         <div className='suggested-second-wrapper'>
 
-                            <div className="suggested-first" style={{ background: `url(${gamesData[gameFriendsPlayId]?.game?.cover})` }}>
+                            <div className="suggested-first"
+                                style={{ background: `url(${gamesData[gameFriendsPlayId]?.game?.cover})` }}
+                                onClick={wallet.connected ? () => setSelected(gameFriendsPlayId) : undefined}>
                                 <div className="label">Friends play</div>
-                                <div className={`price ${wallet.connected ? "active" : "disabled"}`}>Add</div>
+                                {/* <div className={`price ${wallet.connected ? "active" : "disabled"}`}>Add</div> */}
 
                             </div>
                             
@@ -94,10 +93,11 @@ const GamesStorePage = () => {
                     </div>
 
                     <div className="suggested-second--container">
-                            <div className="suggested-second" style={{ background: `url(${gamesData[gameSuggestedId]?.game?.cover})` }}
-                            onClick={() => setSelected(gameSuggestedId)}>
+                            <div className="suggested-second"
+                                style={{ background: `url(${gamesData[gameSuggestedId]?.game?.cover})` }}
+                                onClick={wallet.connected ? () => setSelected(gameSuggestedId) : undefined}>
                                 <div className="label">Suggested for you</div>
-                                <div className={`price ${wallet.connected ? "active" : "disabled"}`}>Add</div>
+                                {/* <div className={`price ${wallet.connected ? "active" : "disabled"}`}>Add</div> */}
 
                             </div>
                         
@@ -120,9 +120,10 @@ const GamesStorePage = () => {
                 gamesData={gamesData}
                 setSelected={setSelected} />
 
+        {wallet.connected &&
         <div style={{ textAlign: 'center', width: '100%', padding: '40px 0px' }}>
             <DevPanelButton />
-        </div>
+        </div>}
         <div style={{ height: '100px' }}>
         </div>
     </div>

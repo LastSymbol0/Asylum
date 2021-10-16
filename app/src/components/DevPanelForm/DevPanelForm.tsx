@@ -4,19 +4,37 @@ import TextField from '@material-ui/core/TextField';
 import './style.scss';
 import { Typography } from '@material-ui/core';
 import { Connection, PublicKey, Keypair } from '@solana/web3.js'
-import { Program, Provider } from '@project-serum/anchor'
 import { useAnchorWallet, useWallet } from '@solana/wallet-adapter-react';
 import { useAnchorProvider, useAsylumProgram } from '../../app/hooks';
 import { mintNFT } from '../../lib/metaplex/packages/web/src/actions/nft'
 import { useEffect, useState } from 'react';
 import { addGameToCatalog } from '../../lib/asylum';
+import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
+import Box from '@mui/material/Box';
+import { useDispatch } from 'react-redux';
+import { fetchGamesCatalogAndLoadNfts } from '../../pages/GamesStore/store/thunks';
 
+function LinearProgressWithLabel(props: LinearProgressProps & { value: number }) {
+  return (
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Box sx={{ width: '100%', mr: 1 }}>
+        <LinearProgress variant="determinate" {...props} />
+      </Box>
+      <Box sx={{ minWidth: 35 }}>
+        <Typography variant="body2">{`${Math.round(
+          props.value,
+        )}%`}</Typography>
+      </Box>
+    </Box>
+  );
+}
 
 const DevPanelForm = () => {
   const provider = useAnchorProvider()
   const wallet = useAnchorWallet()
   const asylumProgram = useAsylumProgram()
   const [NFTcreationProgress, setNFTcreationProgress] = useState(0)
+  const dispatch = useDispatch();
 
   useEffect(() => {
     console.log("NFTcreationProgress", NFTcreationProgress)
@@ -63,8 +81,12 @@ const DevPanelForm = () => {
       sellerFeeBasisPoints: 0
     },
       setNFTcreationProgress)
-    .then(x => addGameToCatalog(asylumProgram, new PublicKey(x.mintAccount)))
+    .then(async (x) => {
+      await addGameToCatalog(asylumProgram, new PublicKey(x.mintAccount))
+      dispatch(fetchGamesCatalogAndLoadNfts(asylumProgram))
+    })
     .catch((e: any) => console.log(e))
+    .finally(() => setNFTcreationProgress(100))
   }
 
   const formik = useFormik({
@@ -78,7 +100,6 @@ const DevPanelForm = () => {
       game_items_mint_accounts: '',
     },
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
       addGame({
         title: values.game_title,
         cover: values.game_cover,
@@ -90,6 +111,17 @@ const DevPanelForm = () => {
       })
     },
   });
+
+  if (NFTcreationProgress > 0)
+  {
+    return (
+    <div className='devPanelForm'>
+      <Typography variant="h5" style={{paddingBottom: "20px"}}>
+        {NFTcreationProgress < 100 ? "NFT minting in progress..." : "Done!"}
+      </Typography>
+      <LinearProgressWithLabel value={NFTcreationProgress} />
+    </div>)
+  }
 
   return (
     <div className='devPanelForm'>

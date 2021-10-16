@@ -12,6 +12,7 @@ import { RootState } from '../../app/store';
 import { ItemState, selectNftItems } from '../../nft-store/items/itemsNftStoreSlice';
 import { GameState, selectNftGames } from '../../nft-store/games/gamesNftStore';
 import { StringPublicKey } from '@oyster/common';
+import { friendsPlayGame } from '../../nft-store/games/dummyGames';
 
 const anywayLoseItems = [
     {
@@ -89,10 +90,14 @@ const getGameItem = (key: StringPublicKey, data: Record<string, ItemState>, game
 const InventoryPage = () => {
     const allItemsCategorised = useSelector((state: RootState) => state.inventoryPage.itemsByGames)
 
-    const allItems = ([] as StringPublicKey[]).concat(...(allItemsCategorised.map(x => x.items.toString())))
-    const allGames = ([] as StringPublicKey[]).concat(...(allItemsCategorised.map(x => x.gameId.toString())))
+    const allItems = ([] as StringPublicKey[]).concat(...(allItemsCategorised.map(x => x.items)))
+    const gamesInLibraryIds = useSelector((state: RootState) => state.libraryPage.gamesInLibrary)
     const itemsData = useSelector((state: RootState) => selectNftItems(state, (allItems)))
-    const gamesData = useSelector((state: RootState) => selectNftGames(state, (allGames)))
+    const gamesData = useSelector((state: RootState) => selectNftGames(state, (gamesInLibraryIds)))
+
+    const gamesInLibraryIdsWithDummy = [...gamesInLibraryIds, friendsPlayGame.publicKey.toString()]
+    console.log("ii", allItems)
+    console.log("iiw", itemsData)
 
 
 
@@ -107,17 +112,23 @@ const InventoryPage = () => {
         </div>
 
 
-        {allItemsCategorised.map(item => {
-            const game = gamesData[item.gameId.toString()]?.game
 
+
+        {gamesInLibraryIdsWithDummy.map(gameId => {
+            const game = gamesData[gameId]?.game
+            const items = allItemsCategorised.find(x => x.gameId === gameId)?.items ?? []
+        
             return (
             <>
                 <div className='gameCategoryDivider'>
                     <Typography className='deviderText'>Items from game “{game?.title ?? ""}”</Typography>
                 </div>
-
+                
+                
                 <div className='inventoryBlock'>
-                    {allItems.map(item => getGameItem(item, itemsData, gamesData))}
+                    {items.length > 0
+                        ? <>{allItems.map(item => getGameItem(item, itemsData, gamesData))}</>
+                        : <>No items so far</>}
                 </div>
             </>
             )

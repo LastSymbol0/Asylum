@@ -19,7 +19,7 @@ const DevPanelPopover = (
       anchorEl={anchorEl}
       onClose={handleClose}
     >
-      <div style={{width: '50%', backgroundColor: theme.palette.background.default, border: "1px solid", borderColor: theme.palette.secondary.main, position: 'fixed', top: '10%', left: '30%' }}>
+      <div style={{width: '50%', backgroundColor: theme.palette.background.default, border: "1px solid", borderColor: theme.palette.secondary.main, position: 'fixed', top: '5%', left: '30%' }}>
         <DevPanelForm />
       </div>
     </Popover>)

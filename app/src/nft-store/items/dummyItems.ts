@@ -1,6 +1,7 @@
-import helmet from './../../assets/Riot_Helmet.png';
-import Chestpiece from './../../assets/Riot_Chestpiece.png';
-import g1 from './../../assets/g 1.png';
+import helmet from './../../assets/item_ex_1.png';
+import Chestpiece from './../../assets/item_ex_4.png';
+import blade from './../../assets/item_ex_3.png';
+import arrows from './../../assets/item_ex_2.png';
 import { ItemNftData } from './itemsNftStoreSlice'
 import { Keypair } from '@solana/web3.js'
 import { friendsPlayGame } from '../games/dummyGames';
@@ -27,7 +28,7 @@ export const dummyItems: ItemNftData[] = [
         game: friendsPlayGame.publicKey,
         name: 'Blade',
         description: "Looks like a weapon, but I'm not sure",
-        image: g1,
+        image: blade,
         price: 3
     },
     {
@@ -41,9 +42,9 @@ export const dummyItems: ItemNftData[] = [
     {
         address: Keypair.generate().publicKey,
         game: friendsPlayGame.publicKey,
-        name: 'Helmet',
-        description: "Common helmet for common variors",
-        image: helmet,
+        name: 'Bow and arrows',
+        description: "Classic",
+        image: arrows,
         price: 5.45
     }
 ]

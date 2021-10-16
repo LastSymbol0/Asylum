@@ -99,7 +99,7 @@ export const mintNFT = async (
   // const { instructions: pushInstructions, signers: pushSigners } =
   //   await prepPayForFilesTxn(wallet, realFiles, metadata);
 
-  progressCallback(1)
+  progressCallback(10)
 
   const TOKEN_PROGRAM_ID = programIds().token;
 
@@ -164,7 +164,7 @@ export const mintNFT = async (
     instructions,
     wallet.publicKey.toBase58(),
   );
-  progressCallback(2)
+  progressCallback(20)
 
   // TODO: enable when using payer account to avoid 2nd popup
   // const block = await connection.getRecentBlockhash('singleGossip');
@@ -184,11 +184,11 @@ export const mintNFT = async (
     signers,
     'single',
   );
-  progressCallback(3)
+  progressCallback(30)
 
   try {
     await connection.confirmTransaction(txid, 'max');
-    progressCallback(4)
+    progressCallback(40)
   } catch {
     // ignore
   }
@@ -197,7 +197,7 @@ export const mintNFT = async (
   // await connection.confirmTransaction(txid, 'max');
   await connection.getParsedConfirmedTransaction(txid, 'confirmed');
 
-  progressCallback(5)
+  progressCallback(50)
 
   // this means we're done getting AR txn setup. Ship it off to IPFS!
   console.log("Uploading data to ipfs", realFiles)
@@ -206,7 +206,7 @@ export const mintNFT = async (
     {
       return uploadToIPFS({ path: f.name, content: f});
     }));
-  progressCallback(6)
+  progressCallback(60)
 
   const metadataFile = result?.find(
     m => m.path === RESERVED_METADATA,
@@ -244,7 +244,7 @@ export const mintNFT = async (
       ),
     );
 
-    progressCallback(7)
+    progressCallback(70)
     // // In this instruction, mint authority will be removed from the main mint, while
     // // minting authority will be maintained for the Printing mint (which we want.)
     await createMasterEdition(
@@ -276,7 +276,7 @@ export const mintNFT = async (
     //   updateInstructions,
     // );
 
-    progressCallback(8)
+    progressCallback(80)
 
     const txid = await sendTransactionWithRetry(
       connection,

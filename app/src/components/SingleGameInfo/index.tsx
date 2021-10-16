@@ -67,7 +67,6 @@ const SingleGameInfo = ({visibility, game, handleClose, isAdded}: {visibility: b
                         </div>
                         <div className='act-row'>
                             <div className='decor'></div>
-                            <Typography className='price'></Typography>
                             <div onClick={isAdded ? onLaunch : onAdd}>
                                 <Typography className='addToBasket'>{isAdded ? "Launch" : "Add to library"}</Typography>
                             </div>
