@@ -2,7 +2,7 @@ import './style.scss';
 import { Typography } from '@mui/material';
 
 
-const GameTile = ({ image, isAdded = false, disabled = false, loading = false, loadingFailed = false, onAdd = undefined, onLaunch = undefined }:
+const GameTile = ({ image, isAdded = false, disabled = false, loading = false, loadingFailed = false, onAdd = undefined, onLaunch = undefined, onClick }:
     {
         image?: string,
         isAdded?: boolean,
@@ -10,11 +10,12 @@ const GameTile = ({ image, isAdded = false, disabled = false, loading = false, l
         loading?: boolean,
         loadingFailed?: boolean,
         onAdd?: () => void,
-        onLaunch?: () => void
+        onLaunch?: () => void,
+        onClick?: () => void
     }) => {
 
     return (
-        <div className='gameItemWrapper'>
+        <div onClick={disabled ? undefined : onClick} className='gameItemWrapper'>
             <div className="game" style={{ background: `url(${image})` }}>
                 {isAdded
                     ?

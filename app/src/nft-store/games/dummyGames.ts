@@ -16,35 +16,35 @@ import { GameNftData } from "./gamesNftStore";
 
 export const catalogGames = [
     { img: gameExample, publicKey: Keypair.generate().publicKey },
-    { img: gameExample1, publicKey: Keypair.generate().publicKey },
-    { img: gameExample2, publicKey: Keypair.generate().publicKey },
-    { img: gameExample3, publicKey: Keypair.generate().publicKey },
-    { img: gameExample4, publicKey: Keypair.generate().publicKey },
-    { img: gameExample5, publicKey: Keypair.generate().publicKey },
-    { img: gameExample6, publicKey: Keypair.generate().publicKey },
-    { img: gameExample7, publicKey: Keypair.generate().publicKey },
-    { img: gameExample8, publicKey: Keypair.generate().publicKey },
-    { img: gameExample9, publicKey: Keypair.generate().publicKey },
-    { img: gameExample, publicKey: Keypair.generate().publicKey },
-    { img: gameExample1, publicKey: Keypair.generate().publicKey },
-    { img: gameExample2, publicKey: Keypair.generate().publicKey },
-    { img: gameExample3, publicKey: Keypair.generate().publicKey },
-    { img: gameExample4, publicKey: Keypair.generate().publicKey },
-    { img: gameExample5, publicKey: Keypair.generate().publicKey },
-    { img: gameExample6, publicKey: Keypair.generate().publicKey },
-    { img: gameExample7, publicKey: Keypair.generate().publicKey },
-    { img: gameExample8, publicKey: Keypair.generate().publicKey },
-    { img: gameExample9, publicKey: Keypair.generate().publicKey },
-    { img: gameExample, publicKey: Keypair.generate().publicKey },
-    { img: gameExample1, publicKey: Keypair.generate().publicKey },
-    { img: gameExample2, publicKey: Keypair.generate().publicKey },
-    { img: gameExample3, publicKey: Keypair.generate().publicKey },
-    { img: gameExample4, publicKey: Keypair.generate().publicKey },
-    { img: gameExample5, publicKey: Keypair.generate().publicKey },
-    { img: gameExample6, publicKey: Keypair.generate().publicKey },
-    { img: gameExample7, publicKey: Keypair.generate().publicKey },
-    { img: gameExample8, publicKey: Keypair.generate().publicKey },
-    { img: gameExample9, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample1, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample2, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample3, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample4, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample5, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample6, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample7, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample8, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample9, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample1, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample2, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample3, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample4, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample5, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample6, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample7, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample8, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample9, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample1, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample2, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample3, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample4, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample5, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample6, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample7, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample8, publicKey: Keypair.generate().publicKey },
+    // { img: gameExample9, publicKey: Keypair.generate().publicKey },
 ]
 export const friendsPlayGame = { publicKey: Keypair.generate().publicKey, img: gamePlaceholder1 }
 export const suggestedForYouGame = { publicKey: Keypair.generate().publicKey, img: gamePlaceholder2 }
@@ -55,16 +55,17 @@ export const bannerGames = [
 ]
 
 export const dummyGames: GameNftData[] = [
-    ...catalogGames.map(x => {
+    ...catalogGames.map((x, i) => {
         return {
             address: x.publicKey,
-            title: "Game dummy",
+            title: "Game dummy" + i,
             description: "This is a dummy game description. ".repeat(10),
             cover: x.img,
             launchUrl: "",
             images: [x.img, x.img, x.img, x.img, x.img],
             tokenMint: PublicKey.default,
             itemsMint: [PublicKey.default],
+            validationLevel: 1,
         }
     }),
     {
@@ -76,6 +77,7 @@ export const dummyGames: GameNftData[] = [
         images: [friendsPlayGame.img, friendsPlayGame.img, friendsPlayGame.img],
         tokenMint: PublicKey.default,
         itemsMint: [PublicKey.default],
+        validationLevel: 1,
     },
     {
         address: suggestedForYouGame.publicKey,
@@ -86,6 +88,7 @@ export const dummyGames: GameNftData[] = [
         images: [suggestedForYouGame.img, suggestedForYouGame.img, suggestedForYouGame.img],
         tokenMint: PublicKey.default,
         itemsMint: [PublicKey.default],
+        validationLevel: 1,
     },
     ...bannerGames.map((x, i) => {
         return {
@@ -97,6 +100,7 @@ export const dummyGames: GameNftData[] = [
             images: [x.img, x.img, x.img],
             tokenMint: PublicKey.default,
             itemsMint: [PublicKey.default],
+            validationLevel: 1,
         }
     })
 ];
