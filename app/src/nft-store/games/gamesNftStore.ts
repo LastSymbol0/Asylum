@@ -1,4 +1,4 @@
-import { StringPublicKey } from '@oyster/common';
+import { StringPublicKey } from 'oyster-common';
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { PublicKey } from '@solana/web3.js'
 import { RootState } from '../../app/store';
@@ -45,8 +45,6 @@ export const gamesNtfStoreSlice = createSlice({
         const succeed = action.payload.filter(x => x.ok).map(x => x.game as GameNftData)
         const failed = action.payload.filter(x => !x.ok).map(x => x.mint.toString())
 
-        console.log("succeed ids", succeed.map(x => x.address.toString( )))
-        console.log("succeed", succeed)
         state.loaded = state.loaded.concat(succeed)
         state.failed = state.failed.concat(failed)
 
@@ -71,9 +69,6 @@ export const selectNftGames = (rootState: RootState, games: StringPublicKey[]) =
   gamesLoaded.forEach(x => result[x.address.toString()] = { status: 'loaded', game: x })
   gamesFailed.forEach(x => result[x.toString()] = { status: 'failed' })
 
-  console.log('gamesNFT results: ', result)
-  console.log('gamesNFT state: ', state.loaded)
-  console.log('gamesNFT gamess: ', games)
 
   return result;
 }

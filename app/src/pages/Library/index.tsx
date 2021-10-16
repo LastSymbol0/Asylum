@@ -10,7 +10,7 @@ import { RootState } from '../../app/store';
 import { GameState, selectNftGames } from '../../nft-store/games/gamesNftStore';
 import { fetchGamesLibraryAndLoadNfts } from './store/thunks';
 import { PublicKey } from '@solana/web3.js'
-import { StringPublicKey } from '@oyster/common';
+import { StringPublicKey } from 'oyster-common';
 import SingleGameInfo from '../../components/SingleGameInfo';
 
 const GamesLibrary = ({ gamesInLibraryIds, gamesData, setSelected }:

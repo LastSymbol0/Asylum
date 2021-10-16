@@ -1,4 +1,4 @@
-import { StringPublicKey } from '@oyster/common';
+import { StringPublicKey } from 'oyster-common';
 import { createSlice } from '@reduxjs/toolkit';
 import { PublicKey, Keypair } from '@solana/web3.js'
 import { friendsPlayGame } from '../../../nft-store/games/dummyGames';

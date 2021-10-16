@@ -1,7 +1,7 @@
 import { Program } from "@project-serum/anchor"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import { PublicKey, Connection } from '@solana/web3.js'
-import { decodeMasterEdition, decodeMetadata, getMetadata } from '@oyster/common'
+import { decodeMasterEdition, decodeMetadata, getMetadata } from 'oyster-common'
 import { fetchNft } from '../helpers'
 import { GameNftData } from "./gamesNftStore"
 
@@ -23,7 +23,6 @@ const fetchGamesNfts = createAsyncThunk('games/fetchNfts', async ({connection, m
                 itemsMint: data.jsonData.properties.items_mint_accounts,
                 validationLevel: data.jsonData.properties.validation_level,
             }
-            console.log('h ', gameNft)
             return {ok: true, mint: mint, game: gameNft}
         } catch (e) {
             return {ok: false, mint: mint, game: null}

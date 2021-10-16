@@ -23,7 +23,7 @@ import { fetchGamesCatalog, fetchGamesCatalogAndLoadNfts } from './store/thunks'
 import { useAsylumProgram, usePlayersProgram } from '../../app/hooks';
 import { asylum, players } from '../../lib';
 import { fetchGamesLibrary, fetchGamesLibraryAndLoadNfts } from '../Library/store/thunks';
-import { StringPublicKey } from '@oyster/common';
+import { StringPublicKey } from 'oyster-common';
 
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -94,7 +94,6 @@ const GamesCatalog = ({ gamesInCatalogIds, gamesInLibraryIds, isDisabled, gamesD
 
                     const validationLevel = data.game?.validationLevel ?? 0;
 
-                    console.log(`i ${item}`, showUnverified, validationLevel)
                     if (!showUnverified && validationLevel < 1)
                         return <></>
 

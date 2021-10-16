@@ -44,12 +44,12 @@ const NavigationPanel = ({ pages }: { pages: Route[] }) => {
 
             <div className="contactUsContainer">
                 <Typography variant="body1">Contact us</Typography>
-                <Link to={{ pathname: "https://" }} target="_blank" >
+                <a  href="https://t.me/joinchat/MFpIhiHJoWMyYjAy" target="_blank" >
                     <img className="icon" src={telegram} alt="telegram icon"/>
-                </Link>
-                <Link to={{ pathname: "https://" }} target="_blank" >
+                </a >
+                <a  href="https://discord.gg/eEa3kqZU" target="_blank" >
                     <img className="icon" src={discord} alt="discord icon"/>
-                </Link>
+                </a >
             </div>
         </div>
     </div>

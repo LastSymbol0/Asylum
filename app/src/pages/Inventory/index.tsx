@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { ItemState, selectNftItems } from '../../nft-store/items/itemsNftStoreSlice';
 import { GameState, selectNftGames } from '../../nft-store/games/gamesNftStore';
-import { StringPublicKey } from '@oyster/common';
+import { StringPublicKey } from 'oyster-common';
 import { friendsPlayGame } from '../../nft-store/games/dummyGames';
 
 const anywayLoseItems = [
@@ -96,10 +96,6 @@ const InventoryPage = () => {
     const gamesData = useSelector((state: RootState) => selectNftGames(state, (gamesInLibraryIds)))
 
     const gamesInLibraryIdsWithDummy = [...gamesInLibraryIds, friendsPlayGame.publicKey.toString()]
-    console.log("ii", allItems)
-    console.log("iiw", itemsData)
-
-
 
     return (
     <div className='inventoryWrapper'>

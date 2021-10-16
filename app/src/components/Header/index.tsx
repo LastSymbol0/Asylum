@@ -22,7 +22,6 @@ const Icon = () => {
 
 const Header = () => {
     const [lang, setLang] = React.useState('EN');
-    const [isWalletButtonOpen, setIsWalletButtonOpen] = React.useState(false);
     const wallet = useWallet()
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -51,20 +50,20 @@ const Header = () => {
                         <MenuItem value={'EN'}>
                             <Typography variant="body1">EN</Typography>
                         </MenuItem>
-                        <MenuItem value={'RU'}>
+                        {/* <MenuItem value={'RU'}>
                             <Typography variant="body1">RU</Typography>
-                        </MenuItem>
+                        </MenuItem> */}
                     </Select>
                 </FormControl>
 
                 <div className="settingButtons">
                     <img src={settingsIcon} alt="settingsIcon" />
                 </div>
+                <Typography>[Devnet]</Typography>
                 
                
                 <div className="connectWallerButton">
                     <WalletMultiButton />
-                    {/* {wallet.connected ? `connected (${wallet.publicKey})` : "connect wallet"} */}
                     
                 </div> 
             </div>

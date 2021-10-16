@@ -1,4 +1,4 @@
-import { StringPublicKey } from '@oyster/common';
+import { StringPublicKey } from 'oyster-common';
 import { createSlice } from '@reduxjs/toolkit';
 
 import { PublicKey } from '@solana/web3.js'
@@ -49,7 +49,6 @@ export const selectNftItems = (rootState: RootState, items: StringPublicKey[]) =
   const itemsInProgress = state.inProgress.filter(x => items.find(a => a === x));
   const itemsLoaded = state.loaded.filter(x => items.find(a => a === x.address.toString()));
   const itemsFailed = state.failed.filter(x => items.find(a => a === x));
-  console.log("qwqwqw", itemsLoaded)
 
   const result: Record<string, ItemState> = {};
 

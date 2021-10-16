@@ -9,7 +9,7 @@ import redDeadImage4 from './../../assets/redDeadImage4.png';
 import { useEffect, useRef } from 'react';
 import { GameNftData } from '../../nft-store/games/gamesNftStore';
 import { usePlayersProgram } from '../../app/hooks';
-import { StringPublicKey } from '@oyster/common';
+import { StringPublicKey } from 'oyster-common';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useDispatch } from 'react-redux';
 import { players } from '../../lib';
