@@ -81,14 +81,15 @@ const GamesStorePage = () => {
                 <div className="suggestedContainer">
                     <div className="suggested-firs--container">
                         <div className="decor-bottom">
-                        <div className='suggested-first-wrapper'>
+                        <div className='suggested-second-wrapper'>
 
                             <div className="suggested-first" style={{ background: `url(${gamesData[gameFriendsPlayId]?.game?.cover})` }}>
                                 <div className="label">Friends play</div>
-                                
+                                <div className={`price ${wallet.connected ? "active" : "disabled"}`}>Add</div>
+
                             </div>
-                            </div>
-                            <div className={`price ${wallet.connected ? "active" : "disabled"}`}>Add</div>
+                            
+                        </div>
                         </div>
                     </div>
 
@@ -96,6 +97,8 @@ const GamesStorePage = () => {
                             <div className="suggested-second" style={{ background: `url(${gamesData[gameSuggestedId]?.game?.cover})` }}
                             onClick={() => setSelected(gameSuggestedId)}>
                                 <div className="label">Suggested for you</div>
+                                <div className={`price ${wallet.connected ? "active" : "disabled"}`}>Add</div>
+
                             </div>
                         
                     </div>
