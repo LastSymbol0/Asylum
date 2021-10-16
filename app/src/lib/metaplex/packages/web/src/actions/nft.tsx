@@ -14,7 +14,7 @@ import {
   toPublicKey,
   WalletSigner,
   Attribute,
-} from '@oyster/common';
+} from 'oyster-common';
 import React, { Dispatch, SetStateAction } from 'react';
 import { MintLayout, Token } from '@solana/spl-token';
 import {
