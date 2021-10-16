@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/Asylum/static/css/main.27a9ac25.chunk.css",
-    "main.js": "/Asylum/static/js/main.d3c42961.chunk.js",
-    "main.js.map": "/Asylum/static/js/main.d3c42961.chunk.js.map",
+    "main.js": "/Asylum/static/js/main.28065d77.chunk.js",
+    "main.js.map": "/Asylum/static/js/main.28065d77.chunk.js.map",
     "runtime-main.js": "/Asylum/static/js/runtime-main.f3929b6e.js",
     "runtime-main.js.map": "/Asylum/static/js/runtime-main.f3929b6e.js.map",
     "static/css/2.1d8af4d0.chunk.css": "/Asylum/static/css/2.1d8af4d0.chunk.css",
-    "static/js/2.8447d8f8.chunk.js": "/Asylum/static/js/2.8447d8f8.chunk.js",
-    "static/js/2.8447d8f8.chunk.js.map": "/Asylum/static/js/2.8447d8f8.chunk.js.map",
+    "static/js/2.e3740ccf.chunk.js": "/Asylum/static/js/2.e3740ccf.chunk.js",
+    "static/js/2.e3740ccf.chunk.js.map": "/Asylum/static/js/2.e3740ccf.chunk.js.map",
     "index.html": "/Asylum/index.html",
     "static/css/2.1d8af4d0.chunk.css.map": "/Asylum/static/css/2.1d8af4d0.chunk.css.map",
     "static/css/main.27a9ac25.chunk.css.map": "/Asylum/static/css/main.27a9ac25.chunk.css.map",
-    "static/js/2.8447d8f8.chunk.js.LICENSE.txt": "/Asylum/static/js/2.8447d8f8.chunk.js.LICENSE.txt",
-    "static/media/CryptoPunkAvatar.2311e876.png": "/Asylum/static/media/CryptoPunkAvatar.2311e876.png",
+    "static/js/2.e3740ccf.chunk.js.LICENSE.txt": "/Asylum/static/js/2.e3740ccf.chunk.js.LICENSE.txt",
     "static/media/App.scss": "/Asylum/static/media/Ubuntu-Regular.fbdecfce.ttf",
     "static/media/discordIcon.f11d82c5.svg": "/Asylum/static/media/discordIcon.f11d82c5.svg",
     "static/media/editPencil.c1f8c78d.svg": "/Asylum/static/media/editPencil.c1f8c78d.svg",
     "static/media/gameExample.93f60f97.png": "/Asylum/static/media/gameExample.93f60f97.png",
+    "static/media/gamer_1_square.b2ae303f.png": "/Asylum/static/media/gamer_1_square.b2ae303f.png",
     "static/media/item_ex_1.71413912.png": "/Asylum/static/media/item_ex_1.71413912.png",
     "static/media/item_ex_2.940f4a6d.png": "/Asylum/static/media/item_ex_2.940f4a6d.png",
     "static/media/item_ex_3.97dba060.png": "/Asylum/static/media/item_ex_3.97dba060.png",
@@ -40,8 +40,8 @@
   "entrypoints": [
     "static/js/runtime-main.f3929b6e.js",
     "static/css/2.1d8af4d0.chunk.css",
-    "static/js/2.8447d8f8.chunk.js",
+    "static/js/2.e3740ccf.chunk.js",
     "static/css/main.27a9ac25.chunk.css",
-    "static/js/main.d3c42961.chunk.js"
+    "static/js/main.28065d77.chunk.js"
   ]
 }
