@@ -110,7 +110,7 @@ function PlayersDemo() {
             isInitialized ? (
               <div style={{ width: "fit-content", margin: "0 auto", textAlign: "left" }}>
                 <h3>Achievements: </h3>
-                {achievements && achievements.length !== 0 ? <ul>{achievements.map((x, i) => <li key={i}>{`${x.label} - ${x.description} | Game: ${x.game.toString()}`}</li>)}</ul> : "No achievements so far"}
+                {achievements && achievements.length !== 0 ? <ul>{achievements.map((x, i) => <li key={i}>{`(id:${x.id}) ${x.label} - ${x.description} | Game: ${x.game.toString()}`}</li>)}</ul> : "No achievements so far"}
 
                 <h1 style={{ marginTop: 60 }}>Edit</h1>
 

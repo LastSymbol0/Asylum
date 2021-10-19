@@ -23,12 +23,13 @@ import { fetchGamesCatalog, fetchGamesCatalogAndLoadNfts } from './store/thunks'
 import { useAsylumProgram, usePlayersProgram } from '../../app/hooks';
 import { asylum, players } from '../../lib';
 import { fetchGamesLibrary, fetchGamesLibraryAndLoadNfts } from '../Library/store/thunks';
-import { StringPublicKey } from '@oyster/common';
+import { StringPublicKey } from 'oyster-common';
 
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { pink } from '@mui/material/colors';
+import { Typography } from '@mui/material'
 
 
 
@@ -44,6 +45,12 @@ const GamesCatalog = ({ gamesInCatalogIds, gamesInLibraryIds, isDisabled, gamesD
     const dispatch = useDispatch();
     const wallet = useWallet()
 
+    const [showUnverified, setShowUnverified] = useState(false);
+
+    const handleChangeShowUnverified = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setShowUnverified(event.target.checked);
+    };
+
 
     const onGameAdd = (game: StringPublicKey) => {
         if (playersProgram)
@@ -57,14 +64,18 @@ const GamesCatalog = ({ gamesInCatalogIds, gamesInLibraryIds, isDisabled, gamesD
 
     return (
         <div>
-            <FormGroup style={{marginLeft: '50px'}}>
-            <FormControlLabel control={<Checkbox sx={{
-    color: '#ffffff',
-    '&.Mui-checked': {
-      color:  '#ffffff',
-    },
-  }} defaultChecked />} label="Show unverified" />
-            </FormGroup>
+            <div>
+                <Checkbox
+                  title="Show unverified games"
+                  checked={showUnverified}
+                  onChange={handleChangeShowUnverified}
+                  sx={{
+                      color: '#ffffff',
+                      '&.Mui-checked': {
+                        color:  '#ffffff',
+                      },
+                    }}/>Show unverified
+            </div>
             <div className="gamesList">
                 {gamesInCatalogIds.map((item, i) => {
                     const data = gamesData[item] ?? {status: 'inProgress'}
@@ -80,6 +91,12 @@ const GamesCatalog = ({ gamesInCatalogIds, gamesInLibraryIds, isDisabled, gamesD
 
                     // if (!data.game?.title.includes(searchQuery))
                         // return <></>
+
+                    const validationLevel = data.game?.validationLevel ?? 0;
+
+                    if (!showUnverified && validationLevel < 1)
+                        return <></>
+
 
                     return <GameTile
                         disabled={isDisabled}

@@ -1,5 +1,5 @@
 import './style.scss'
-import placeholder from './../../assets/CryptoPunkAvatar.png';
+import avatarPlaceholder from './../../assets/gamer_1_square.png';
 import editPencil from './../../assets/editPencil.svg';
 import { useWallet } from '@solana/wallet-adapter-react';
 
@@ -15,6 +15,7 @@ import { selectNftGames } from '../../nft-store/games/gamesNftStore';
 import { fetchGamesLibraryAndLoadNfts } from '../../pages/Library/store/thunks';
 import { fetchGamesNfts } from '../../nft-store/games/thunks';
 import { PublicKey } from "@solana/web3.js"
+import { initPlayer } from '../../lib/players';
 
 type ActionStatus = "INIT" | "PENDING" | "FINISHED" | "FAILED";
 
@@ -26,19 +27,21 @@ const ProfilePanel = () => {
     const dispatch = useDispatch();
     const [isInitialized, setIsInitialized] = useState(false)
     const [playerDataLoadingSatus, setPlayerDataLoadingSatus] = useState<ActionStatus>("INIT")
+    const [playerAccountInitSatus, setPlayerAccountInitSatus] = useState<ActionStatus>("INIT")
     const [achievementsLoadingSatus, setAchievementsLoadingSatus] = useState<ActionStatus>("INIT")
 
     const [nickname, setNickname] = useState('')
     const [inputNickname, setInputNickname] = useState('')
     const [nicknameChangingModeOn, setnicknameChangingModeOn] = useState(false)
 
-    const [playerAchievements, setPlayerAchievements] = useState([]);
-    const [catalogPlayerAchievements, setCatalogPlayerAchievements] = useState([]);
+    const [playerAchievements, setPlayerAchievements] = useState([] as number[]);
+    const [catalogPlayerAchievements, setCatalogPlayerAchievements] = useState([] as any[]);
 
     const [level, setLevel] = useState(0)
 
-    const gamesData = useSelector((state: RootState) => selectNftGames(state, [...playerAchievements]))
-
+    const gamesData = useSelector((state: RootState) => selectNftGames(state,
+        playerAchievements
+            .map(x => catalogPlayerAchievements.find(data => data.id === x)?.game?.toString())))
 
     useEffect(() => {
         if (playerDataLoadingSatus === "INIT")
@@ -46,15 +49,37 @@ const ProfilePanel = () => {
 
     }, [player, playerDataLoadingSatus])
 
+    useEffect(() => {
+        if (playerAccountInitSatus === "INIT" && playerDataLoadingSatus === "FAILED")
+            initializePlayer();
+
+    }, [player, playerAccountInitSatus, playerDataLoadingSatus])
+
     useEffect(()=>{
         if (achievementsLoadingSatus === "INIT")
             fetchAchievementsData()
-
     }, [player])
 
     useEffect(() => {
         setInputNickname(nickname);
     }, [nicknameChangingModeOn, nickname])
+
+    async function initializePlayer() {
+        if (!player)
+            return
+    
+        try {
+          setPlayerAccountInitSatus("PENDING")
+          await players.initPlayer(player)
+          setIsInitialized(true)
+          setPlayerAccountInitSatus("FINISHED")
+        } catch (err) {
+          setPlayerAccountInitSatus("FAILED")
+          console.log("Transaction error: ", err)
+        }
+    
+        fetchPlayerData()
+      }
 
 
     async function fetchPlayerData() {
@@ -98,7 +123,6 @@ const ProfilePanel = () => {
             // setnicknameChangingModeOn(false)
 
             setCatalogPlayerAchievements(account.achievements);
-            console.log('fetched achievents ', account.achievements)
 
 
             await dispatch(fetchGamesNfts({
@@ -147,7 +171,7 @@ const ProfilePanel = () => {
     return (<>
         {wallet.connected && <div className="profileContainer">
             <div className="accountInfo">
-                <img className="profileIcon" src={placeholder} alt="profile icon" />
+                <img className="profileIcon" src={avatarPlaceholder} alt="profile icon" />
 
                 <div className={`nicknameChangingBox ${nicknameChangingModeOn ? '' : 'notVisible'}`}>
                     <input
@@ -182,7 +206,7 @@ const ProfilePanel = () => {
                         .filter(ach => catalogPlayerAchievements.find((x:any) => x.id === ach))
                         .map((ach, i) => {
                         const achievementData = catalogPlayerAchievements.find((x:any) => x.id == ach) as any | undefined
-                        console.log('gamesData: ', gamesData)
+
                         return (<>
                             
                             {!!achievementData && i < 3 && (<li key={i}><Typography>{`${achievementData.label} - ${achievementData.description} | Game: ${gamesData[achievementData.game.toString()]?.game?.title}`}</Typography></li>)}

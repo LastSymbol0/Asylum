@@ -6,7 +6,7 @@ import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 import { useEffect, useState } from 'react'
 import { Connection, PublicKey, Keypair } from '@solana/web3.js'
 import { Program, Provider } from '@project-serum/anchor'
-import { decodeMasterEdition, decodeMetadata, getMetadata } from '@oyster/common'
+import { decodeMasterEdition, decodeMetadata, getMetadata } from 'oyster-common'
 
 // import { createShipMasterNFT } from '../lib/metaplex'
 // import { mintNFT } from '../lib/cli/src/commands/mint-nft'
@@ -68,7 +68,7 @@ function GamesDemo() {
 
     try {
       console.log(program)
-      await asylum.initAsylumAccounts(program)
+      await asylum.initGamesCatalogAccount(program)
       setIsInitialized(true)
     } catch (err) {
       console.log("Transaction error: ", err)
@@ -82,7 +82,7 @@ function GamesDemo() {
     const program = new Program(idl, programID, provider)
 
     try {
-      await asylum.addGameToCatalog(program, new PublicKey("37zew4JheuWMQy3QfNmRaUfqpqaWJNoJwtX4Wbm8BdVY"))
+      await asylum.addGameToCatalog(program, new PublicKey("8tkver7inkpdqYafqpH8KF9Jfwarnd93gv8Mf8g5jGyC"))
         // const keypair =  Keypair.generate();
         // const metadata =  createMetaplexMetadata(
         //   "Name hosted meta",

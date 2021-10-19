@@ -1,4 +1,4 @@
-import { decodeMetadata, getMetadata } from '@oyster/common';
+import { decodeMetadata, getMetadata } from 'oyster-common';
 import * as anchor from '@project-serum/anchor';
 import { Connection, PublicKey, clusterApiUrl } from '@solana/web3.js';
 
@@ -10,11 +10,9 @@ export const fetchNft = async (connection: Connection, mint: PublicKey) => {
         throw Error("getAccountInfo returns invalid data")
 
     const metadata = decodeMetadata(buffer.data)
-    console.log("fetched meta", metadata)
 
     const resp = await fetch(metadata.data.uri)
     const json = await resp.json()
-    console.log("resp", json)
 
     return {
         ...metadata,

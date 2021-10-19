@@ -2,13 +2,12 @@
   "name": "app",
   "homepage": "https://lastsymbol0.github.io/Asylum",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@mui/icons-material": "^5.0.4",
     "@mui/material": "^5.0.1",
-    "@oyster/common": "file:src/lib/metaplex/packages/common",
     "@project-serum/anchor": "^0.16.1",
     "@reduxjs/toolkit": "^1.6.1",
     "@solana/spl-token": "^0.1.8",
@@ -25,11 +24,13 @@
     "@types/react-dom": "^16.9.14",
     "@types/react-redux": "^7.1.18",
     "asylum-sdk": "^0.0.0",
+    "eventemitter3": "^2.0.3",
     "formik": "^2.2.9",
     "ipfs-http-client": "^53.0.1",
     "material-ui-search-bar": "^1.0.0",
     "node-sass": "^6.0.1",
     "npm-run-all": "^4.1.5",
+    "oyster-common": "0.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.5",
@@ -39,8 +40,7 @@
     "react-scripts": "^4.0.3",
     "slick-carousel": "^1.8.1",
     "swiper": "^7.0.8",
-    "typescript": "~4.1.5",
-    "web": "file:src/lib/metaplex/packages/web"
+    "typescript": "~4.1.5"
   },
   "scripts": {
     "start": "react-scripts start",

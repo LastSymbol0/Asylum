@@ -11,7 +11,10 @@ import gameExample6 from "./../../assets/Rectangle23.png";
 import gameExample3 from "./../../assets/Rectangle24.png";
 import gameExample8 from "./../../assets/Rectangle25.png";
 import gameExample9 from "./../../assets/Rectangle26.png";
-import gamePlaceholder3 from './../../assets/sliderPlaceholder.png';
+import bannerGame1 from './../../assets/wots_wide.png';
+import wotsH from './../../assets/wotsH.jpg';
+import bannerGame2 from './../../assets/AL_gameplay.png';
+import bannerGame3 from './../../assets/wots_wide_logo.png';
 import { GameNftData } from "./gamesNftStore";
 
 export const catalogGames = [
@@ -46,28 +49,28 @@ export const catalogGames = [
     // { img: gameExample8, publicKey: Keypair.generate().publicKey },
     // { img: gameExample9, publicKey: Keypair.generate().publicKey },
 ]
-export const friendsPlayGame = { publicKey: Keypair.generate().publicKey, img: gamePlaceholder1 }
-export const suggestedForYouGame = { publicKey: Keypair.generate().publicKey, img: gamePlaceholder2 }
+export const friendsPlayGame = { publicKey: Keypair.generate().publicKey, img: wotsH }
+export const suggestedForYouGame = { publicKey: Keypair.generate().publicKey, img: wotsH }
 export const bannerGames = [
-    { publicKey: Keypair.generate().publicKey, img: gamePlaceholder3 },
-    { publicKey: Keypair.generate().publicKey, img: gamePlaceholder3 },
-    { publicKey: Keypair.generate().publicKey, img: gamePlaceholder3 },
+    { publicKey: Keypair.generate().publicKey, img: bannerGame1 },
+    { publicKey: Keypair.generate().publicKey, img: bannerGame3 },
+    { publicKey: Keypair.generate().publicKey, img: bannerGame1 },
 ]
 
 export const dummyGames: GameNftData[] = [
-    ...catalogGames.map((x, i) => {
-        return {
-            address: x.publicKey,
-            title: "Game dummy" + i,
-            description: "This is a dummy game description. ".repeat(10),
-            cover: x.img,
-            launchUrl: "",
-            images: [x.img, x.img, x.img, x.img, x.img],
-            tokenMint: PublicKey.default,
-            itemsMint: [PublicKey.default],
-            validationLevel: 1,
-        }
-    }),
+    // ...catalogGames.map((x, i) => {
+    //     return {
+    //         address: x.publicKey,
+    //         title: "Game dummy" + i,
+    //         description: "This is a dummy game description. ".repeat(10),
+    //         cover: x.img,
+    //         launchUrl: "",
+    //         images: [x.img, x.img, x.img, x.img, x.img],
+    //         tokenMint: PublicKey.default,
+    //         itemsMint: [PublicKey.default],
+    //         validationLevel: 1,
+    //     }
+    // }),
     {
         address: friendsPlayGame.publicKey,
         title: "Game dummy",

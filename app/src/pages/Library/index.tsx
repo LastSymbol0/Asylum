@@ -3,19 +3,21 @@ import './style.scss'
 
 import { Typography } from '@material-ui/core';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { usePlayersProgram } from '../../app/hooks';
 import { RootState } from '../../app/store';
 import { GameState, selectNftGames } from '../../nft-store/games/gamesNftStore';
 import { fetchGamesLibraryAndLoadNfts } from './store/thunks';
 import { PublicKey } from '@solana/web3.js'
-import { StringPublicKey } from '@oyster/common';
+import { StringPublicKey } from 'oyster-common';
+import SingleGameInfo from '../../components/SingleGameInfo';
 
-const GamesLibrary = ({ gamesInLibraryIds, gamesData }:
+const GamesLibrary = ({ gamesInLibraryIds, gamesData, setSelected }:
     {
         gamesInLibraryIds: StringPublicKey[],
         gamesData: Record<string, GameState>
+        setSelected: (x: StringPublicKey) => void
     }) => {
     return (
         <div className="gamesList">
@@ -28,6 +30,7 @@ const GamesLibrary = ({ gamesInLibraryIds, gamesData }:
                     if (loaded)
                         window?.open(data.game?.launchUrl, '_blank')?.focus()
                 }
+                const onClick = () => { setSelected(item) }
 
                 return <GameTile
                     disabled={false}
@@ -36,12 +39,14 @@ const GamesLibrary = ({ gamesInLibraryIds, gamesData }:
                     image={loaded ? data.game?.cover : undefined}
                     isAdded={true}
                     onAdd={onAdd}
-                    onLaunch={onLaunch} />
+                    onLaunch={onLaunch}
+                    onClick={onClick} />
             })}
         </div>)
 }
 
 const LibraryPage = () => {
+    const [selected, setSelected] = useState('')
     const gamesInLibraryIds = useSelector((state: RootState) => state.libraryPage.gamesInLibrary)
     const isLibraryFetched = useSelector((state: RootState) => state.libraryPage.isLibraryFetched)
 
@@ -63,7 +68,13 @@ const LibraryPage = () => {
         <div className='libraryHeader'>
             <Typography className='libraryHeaderText'>My games</Typography>
         </div>
-            <GamesLibrary gamesInLibraryIds={gamesInLibraryIds} gamesData={gamesData} />
+            <GamesLibrary gamesInLibraryIds={gamesInLibraryIds} gamesData={gamesData} setSelected={setSelected} />
+
+            <SingleGameInfo
+                        visibility={selected !== ''}
+                        game={gamesData[selected]?.game}
+                        handleClose={ () => { setSelected('') }}
+                        isAdded={gamesInLibraryIds.indexOf(selected) !== -1}/>
     </div>)
 }
 

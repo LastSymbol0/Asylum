@@ -9,7 +9,7 @@ import redDeadImage4 from './../../assets/redDeadImage4.png';
 import { useEffect, useRef } from 'react';
 import { GameNftData } from '../../nft-store/games/gamesNftStore';
 import { usePlayersProgram } from '../../app/hooks';
-import { StringPublicKey } from '@oyster/common';
+import { StringPublicKey } from 'oyster-common';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { useDispatch } from 'react-redux';
 import { players } from '../../lib';
@@ -67,7 +67,6 @@ const SingleGameInfo = ({visibility, game, handleClose, isAdded}: {visibility: b
                         </div>
                         <div className='act-row'>
                             <div className='decor'></div>
-                            <Typography className='price'></Typography>
                             <div onClick={isAdded ? onLaunch : onAdd}>
                                 <Typography className='addToBasket'>{isAdded ? "Launch" : "Add to library"}</Typography>
                             </div>

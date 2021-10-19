@@ -1,3 +1,4 @@
+import { StringPublicKey } from 'oyster-common';
 import { createSlice } from '@reduxjs/toolkit';
 import { PublicKey, Keypair } from '@solana/web3.js'
 import { friendsPlayGame } from '../../../nft-store/games/dummyGames';
@@ -5,16 +6,16 @@ import { dummyItems } from '../../../nft-store/items/dummyItems';
 
 export interface InventoryPageState {
   itemsByGames: [{
-    gameId: PublicKey,
-    items: PublicKey[]
+    gameId: StringPublicKey,
+    items: StringPublicKey[]
   }],
 }
 
 const initialState: InventoryPageState = {
   itemsByGames: [
     {
-      gameId: friendsPlayGame.publicKey,
-      items: dummyItems.map(x => x.address)
+      gameId: friendsPlayGame.publicKey.toString(),
+      items: dummyItems.map(x => x.address.toString())
     }
   ]
 };

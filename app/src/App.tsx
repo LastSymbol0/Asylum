@@ -14,9 +14,7 @@ import { useEffect } from 'react';
 const wallets = [getPhantomWallet()]
 
 const Pages = ({ pages }: { pages: PageRoute[] }) => {
-  useEffect(() => {
-    console.log(pages);
-  }, [ ])
+
   return (
     <Switch>
       {pages.map((x => <Route path={x.path} key={x.path} exact component={x.component} />))}

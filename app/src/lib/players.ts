@@ -10,7 +10,7 @@ export const findPlayerGameAccountAddress = (userPublicKey: PublicKey, gameId: P
     return PublicKey.findProgramAddress([userPublicKey.toBuffer(), gameId.toBuffer()], programId);
 }
 
-export const initPlayer = async (program: Program, nickname: string = "CryptoBuddy77", avatar: PublicKey = PublicKey.default): Promise<void> => {
+export const initPlayer = async (program: Program, nickname: string = "Crypto Warior", avatar: PublicKey = PublicKey.default): Promise<void> => {
     const userPublicKey = program.provider.wallet.publicKey;
     const programId = program.programId;
     const [playerAccount, nonce] = await findPlayerGlobalAccountAddress(userPublicKey, programId);

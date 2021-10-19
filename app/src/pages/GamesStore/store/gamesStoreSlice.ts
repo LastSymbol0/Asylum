@@ -1,4 +1,4 @@
-import { StringPublicKey } from '@oyster/common';
+import { StringPublicKey } from 'oyster-common';
 import { createSlice } from '@reduxjs/toolkit';
 import { bannerGames as dummyBannerGames, friendsPlayGame, suggestedForYouGame } from '../../../nft-store/games/dummyGames';
 import { fetchGamesCatalog } from './thunks';
