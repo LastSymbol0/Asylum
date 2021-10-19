@@ -16,7 +16,7 @@ const GameTile = ({ image, isAdded = false, disabled = false, loading = false, l
 
     return (
         <div onClick={disabled ? undefined : onClick} className='gameItemWrapper'>
-            <div className="game" style={{ background: `url(${image})` }}>
+            <div className="game" style={{ backgroundImage: `url(${image})`}}>
                 {isAdded
                     ?
                     <div className={"tileButton launchButton " + (disabled ? "disabled" : "active") } onClick={disabled ? undefined : onLaunch}>
