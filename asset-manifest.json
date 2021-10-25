@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/Asylum/static/css/main.9185ea87.chunk.css",
-    "main.js": "/Asylum/static/js/main.e749d0cb.chunk.js",
-    "main.js.map": "/Asylum/static/js/main.e749d0cb.chunk.js.map",
+    "main.js": "/Asylum/static/js/main.5a3ebf55.chunk.js",
+    "main.js.map": "/Asylum/static/js/main.5a3ebf55.chunk.js.map",
     "runtime-main.js": "/Asylum/static/js/runtime-main.f3929b6e.js",
     "runtime-main.js.map": "/Asylum/static/js/runtime-main.f3929b6e.js.map",
     "static/css/2.1d8af4d0.chunk.css": "/Asylum/static/css/2.1d8af4d0.chunk.css",
-    "static/js/2.a434a130.chunk.js": "/Asylum/static/js/2.a434a130.chunk.js",
-    "static/js/2.a434a130.chunk.js.map": "/Asylum/static/js/2.a434a130.chunk.js.map",
+    "static/js/2.95d447aa.chunk.js": "/Asylum/static/js/2.95d447aa.chunk.js",
+    "static/js/2.95d447aa.chunk.js.map": "/Asylum/static/js/2.95d447aa.chunk.js.map",
     "index.html": "/Asylum/index.html",
     "static/css/2.1d8af4d0.chunk.css.map": "/Asylum/static/css/2.1d8af4d0.chunk.css.map",
     "static/css/main.9185ea87.chunk.css.map": "/Asylum/static/css/main.9185ea87.chunk.css.map",
-    "static/js/2.a434a130.chunk.js.LICENSE.txt": "/Asylum/static/js/2.a434a130.chunk.js.LICENSE.txt",
+    "static/js/2.95d447aa.chunk.js.LICENSE.txt": "/Asylum/static/js/2.95d447aa.chunk.js.LICENSE.txt",
     "static/media/App.scss": "/Asylum/static/media/Ubuntu-Regular.fbdecfce.ttf",
     "static/media/discordIcon.f11d82c5.svg": "/Asylum/static/media/discordIcon.f11d82c5.svg",
     "static/media/editPencil.c1f8c78d.svg": "/Asylum/static/media/editPencil.c1f8c78d.svg",
@@ -40,8 +40,8 @@
   "entrypoints": [
     "static/js/runtime-main.f3929b6e.js",
     "static/css/2.1d8af4d0.chunk.css",
-    "static/js/2.a434a130.chunk.js",
+    "static/js/2.95d447aa.chunk.js",
     "static/css/main.9185ea87.chunk.css",
-    "static/js/main.e749d0cb.chunk.js"
+    "static/js/main.5a3ebf55.chunk.js"
   ]
 }
